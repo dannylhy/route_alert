@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<types>
+	<type id="25mi" priority="2" numLanes="1" speed="11.18"/>
+	<type id="35mi" priority="3" numLanes="2" speed="15.65"/>
+	<type id="45mi" priority="4" numLanes="3" speed="20.12"/>
+</types>

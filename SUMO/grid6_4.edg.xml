@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edges xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/edges_file.xsd">
+	<edge id="L0102" from="1" to="2" type="35mi"/>
+	<edge id="L0203" from="2" to="3" type="35mi"/>
+	<edge id="L0304" from="3" to="4" type="35mi"/>
+	<edge id="L0405" from="4" to="5" type="35mi"/>
+	<edge id="L0506" from="5" to="6" type="35mi"/>
+	<edge id="L0807" from="8" to="7" type="35mi"/>
+	<edge id="L0908" from="9" to="8" type="35mi"/>
+	<edge id="L1009" from="10" to="9" type="35mi"/>
+	<edge id="L1110" from="11" to="12" type="35mi"/>
+	<edge id="L1211" from="12" to="13" type="35mi"/>
+	<edge id="L1314" from="13" to="14" type="35mi"/>
+	<edge id="L1415" from="14" to="15" type="35mi"/>
+	<edge id="L1516" from="15" to="16" type="35mi"/>
+	<edge id="L1617" from="16" to="17" type="35mi"/>
+	<edge id="L1718" from="17" to="18" type="35mi"/>
+	<edge id="L2019" from="20" to="19" type="35mi"/>
+	<edge id="L2120" from="21" to="20" type="35mi"/>
+	<edge id="L2221" from="22" to="21" type="35mi"/>
+	<edge id="L2322" from="23" to="22" type="35mi"/>
+	<edge id="L2423" from="24" to="23" type="35mi"/>
+	<edge id="L0107" from="1" to="7" type="45mi"/>
+	<edge id="L0701" from="7" to="1" type="45mi"/>
+	<edge id="L0713" from="7" to="13" type="45mi"/>
+	<edge id="L1307" from="13" to="7" type="45mi"/>
+	<edge id="L1319" from="13" to="19" type="45mi"/>
+	<edge id="L1913" from="19" to="13" type="45mi"/>
+	<edge id="L0208" from="2" to="8" type="25mi"/>
+	<edge id="L0814" from="8" to="14" type="25mi"/>
+	<edge id="L1420" from="14" to="20" type="25mi"/>
+	<edge id="L0309" from="3" to="9" type="45mi"/>
+	<edge id="L0903" from="9" to="3" type="45mi"/>
+	<edge id="L0915" from="9" to="15" type="45mi"/>
+	<edge id="L1509" from="15" to="9" type="45mi"/>
+	<edge id="L1521" from="15" to="21" type="45mi"/>
+	<edge id="L2115" from="21" to="15" type="45mi"/>
+	<edge id="L0104" from="10" to="4" type="25mi"/>
+	<edge id="L1610" from="16" to="10" type="25mi"/>
+	<edge id="L2216" from="22" to="16" type="25mi"/>
+	<edge id="L0511" from="5" to="11" type="25mi"/>
+	<edge id="L1117" from="11" to="17" type="25mi"/>
+	<edge id="L1723" from="17" to="23" type="25mi"/>
+	<edge id="L0612" from="6" to="12" type="45mi"/>
+	<edge id="L1206" from="12" to="6" type="45mi"/>
+	<edge id="L1218" from="12" to="18" type="45mi"/>
+	<edge id="L1812" from="18" to="12" type="45mi"/>
+	<edge id="L1824" from="18" to="24" type="45mi"/>
+	<edge id="L2418" from="24" to="18" type="45mi"/>
+</edges>
