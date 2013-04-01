@@ -1,6 +1,6 @@
 /* -*-  Mode: C++; c-file-style: "gnu"; indent-tabs-mode:nil; -*- */
 /*
- * Copyright (c) 2010 University of Arizona
+ * Copyright (c) 2013 Georgia Institute of Technology
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as 
@@ -33,7 +33,7 @@ using namespace std;
 NS_LOG_COMPONENT_DEFINE ("BSRoutingTable");
 
 namespace ns3{
-
+  namespace bs{
         TypeId BufferAndSwitchRoutingTable::GetTypeId ()
         {
                 static TypeId tid = TypeId ("ns3::BufferAndSwitchRoutingTable")
@@ -52,44 +52,54 @@ namespace ns3{
         {
         }
 
-        void BufferAndSwitchRoutingTable::AddRoute (BSRoutingTableEntry entry)
+        void BufferAndSwitchRoutingTable::UpdateRoute (Ipv4Address addr, uint64_t posx, uint64_t posy, std::vector<char> currentRoad)
         {
-                m_bsTable.push_front (entry);
-        }
 
-        void BufferAndSwitchRoutingTable::UpdateRoute (Ipv4Address ip, char nextIntersection)
-        {
-                for (std::list<BSRoutingTableEntry>::iterator it = m_bsTable.begin (); it != m_bsTable.end (); it++)
+                for (std::vector<BSRoutingTableEntry>::iterator it = m_bsTable.begin (); it != m_bsTable.end (); it++)
                 {
-                        //if find, update routing table
-                        if ((it->addr).IsEqual (ip))
+                        time_t currentTime;
+                        time (&currentTime);
+                        //delete legancy entry
+                        if ( (currentTime - it->timeStamp) > m_entryExpireTime )
                         {
-                                it->nextIntersection = nextIntersection;
-                                it->timeStamp = 0; //to be modified
+                                m_bsTable.erase (it);
+                                return;
+                        }
+
+                        //if find, update routing table
+                        if ((it->addr).IsEqual (addr))
+                        {
+                                it->posx = posx;
+                                it->posy = posy;
+                                it->currentRoad = currentRoad;
+                                time (&(it->timeStamp));
                                 return;
                         }
                 }
 
                 //if not find, then add
-                BSRoutingTableEntry bsr;
-                bsr.addr = ip;
-                bsr.nextIntersection = nextIntersection;
-                bsr.timeStamp = 0;  //to be modified
+                BSRoutingTableEntry bsrEntry;
+                bsrEntry.addr = addr;
+                bsrEntry.posx = posx;
+                bsrEntry.posy = posy;
+                bsrEntry.currentRoad = currentRoad;
+                time (&(bsrEntry.timeStamp));
 
-                m_bsTable.push_front (bsr);
+                m_bsTable.push_back (bsrEntry);
+
         }
 
-        Ipv4Address BufferAndSwitchRoutingTable::LookupRoute (char nextIntersection)
+        std::vector<Ipv4Address> BufferAndSwitchRoutingTable::LookupRoute (std::vector<char> currentRoad)
         {
-                for(std::list<BSRoutingTableEntry>::iterator it = m_bsTable.begin ();
-                    it != m_bsTable.end(); it++)
+                std::vector<Ipv4Address> ipv4AddressVector;
+                for (uint32_t i = 0; i < m_bsTable.size (); i++)
                 {
-                        if (it->nextIntersection == nextIntersection)
+                        if ( (m_bsTable [i].currentRoad [0] == currentRoad [0]) && ( m_bsTable [i].currentRoad [1] == currentRoad [1]) )
                         {
-                                return it->addr;
+                                ipv4AddressVector.push_back (m_bsTable [i].addr);
                         }
                 }
-
-                return 0;
+                return ipv4AddressVector;
         }
+  }
 }
