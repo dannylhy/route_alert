@@ -1,6 +1,6 @@
 /* * -*-  Mode: C++; c-file-style: "gnu"; indent-tabs-mode:nil; -*- */
 /*
- * Copyright (c) 2010 University of Arizona
+ * Copyright (c) 2013 Georgia Institute of Technology
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as 
@@ -23,17 +23,19 @@
 
 #include "ns3/ipv4-routing-protocol.h"
 #include "bs-routing-table.h"
+#include "bs-routing-packet.h"
 #include <list>
 
 namespace ns3{
-
+  namespace bs{
         class BufferAndSwitchRouting: public Ipv4RoutingProtocol
         {
                 public:
                         static TypeId GetTypeId(void);
+                        static const uint32_t BS_PORT;
+
                         BufferAndSwitchRouting ();
                         virtual ~BufferAndSwitchRouting();
-
                         //Below are from Ipv4RoutingProtocol
                         virtual Ptr<Ipv4Route> RouteOutput (Ptr<Packet> p, const Ipv4Header &header, Ptr<NetDevice> oif, Socket::SocketErrno &sockerr);
 
@@ -49,13 +51,18 @@ namespace ns3{
 
                         void SetRtable (Ptr<BufferAndSwitchRoutingTable> ptr);
                 private:
-                        char GetNextIntersection();
+                        Ptr<Socket> FindSocketWithInterfaceAddress (Ipv4InterfaceAddress addr) const;
+                        void SendPkt (Ipv4Address dst, MessageType type);
+                        void BSRecv (Ptr<Socket> socket);
                 private:
                         Ptr<BufferAndSwitchRoutingTable> m_rtable;
                         Ipv4Address m_address;
                         Ptr<Ipv4> m_ipv4;
                         uint32_t m_ifaceId;
+                        std::map< Ptr<Socket>, Ipv4InterfaceAddress> m_socketAddresses;
+                        Ipv4InterfaceAddress m_iface;
         };
+   }
 }
 
 #endif  //BUFFER_AND_SWITCH_ROUTING_H
