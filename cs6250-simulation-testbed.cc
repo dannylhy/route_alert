@@ -125,7 +125,7 @@ main (int argc, char *argv[])
   NetDeviceContainer apDevices;
   apDevices = wifi.Install (phy, mac, wifiApNode);
 
-  MobilityHelper mobility; //TODO Michael - Import SUMA trace and Setup Mobility based on that 
+  MobilityHelper mobility; //TODO Michael - Import SUMO trace and Setup Mobility based on that 
 
   mobility.SetPositionAllocator ("ns3::GridPositionAllocator",
                                  "MinX", DoubleValue (0.0),
