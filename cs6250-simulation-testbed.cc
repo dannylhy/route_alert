@@ -38,9 +38,9 @@ using namespace ns3;
 
 NS_LOG_COMPONENT_DEFINE ("ThirdScriptExample");
 
-#TODO Bharat - Change Topology to have a Wifi only setup/model; 
-#TODO Bharat - Remove Echo Request-Response Mechanism and change it to what we want; 
-#TODO Bharat - Refer to TODO's of Michael and Danny and get it done;
+//TODO Bharat - Change Topology to have a Wifi only setup/model; 
+//TODO Bharat - Remove Echo Request-Response Mechanism and change it to what we want; 
+//TODO Bharat - Refer to TODO's of Michael and Danny and get it done;
 
 void
 CourseChange (std::string context, Ptr<const MobilityModel> model)
@@ -125,7 +125,7 @@ main (int argc, char *argv[])
   NetDeviceContainer apDevices;
   apDevices = wifi.Install (phy, mac, wifiApNode);
 
-  MobilityHelper mobility; #TODO Michael - Import SUMA trace and Setup Mobility based on that 
+  MobilityHelper mobility; //TODO Michael - Import SUMA trace and Setup Mobility based on that 
 
   mobility.SetPositionAllocator ("ns3::GridPositionAllocator",
                                  "MinX", DoubleValue (0.0),
@@ -177,7 +177,7 @@ main (int argc, char *argv[])
   clientApps.Start (Seconds (2.0));
   clientApps.Stop (Seconds (10.0));
 
-  Ipv4GlobalRoutingHelper::PopulateRoutingTables (); #TODO Danny and Qi - customize this as per our routing protocol.
+  Ipv4GlobalRoutingHelper::PopulateRoutingTables (); //TODO Danny and Qi - customize this as per our routing protocol.
 
   Simulator::Stop (Seconds (10.0));
 
