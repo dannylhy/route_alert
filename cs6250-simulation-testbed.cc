@@ -36,7 +36,7 @@
 
 using namespace ns3;
 
-NS_LOG_COMPONENT_DEFINE ("ThirdScriptExample");
+NS_LOG_COMPONENT_DEFINE ("cs6250-simulation-testbed");
 
 //TODO Bharat - Change Topology to have a Wifi only setup/model; 
 //TODO Bharat - Remove Echo Request-Response Mechanism and change it to what we want; 
