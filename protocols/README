@@ -1,0 +1,6 @@
+These files go into /ns-3.16
+
+GPSR
+Needs 2 directories:
+/src/gpsr
+/src/location-service
