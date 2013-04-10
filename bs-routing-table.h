@@ -1,6 +1,6 @@
 /* -*-  Mode: C++; c-file-style: "gnu"; indent-tabs-mode:nil; -*- */
 /*
- * Copyright (c) 2010 University of Arizona
+ * Copyright (c) 2013 Georgia Institute of Technology
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as 
@@ -15,7 +15,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- * Author: Qi Zhang <qzhang90@gatech.edu>
+ * Author: Qi Zhang <qzhang90@gatech.edu>>
  */
 
 #ifndef BUFFER_AND_SWITCH_ROUTING_TABLE_H
@@ -26,33 +26,34 @@
 #include "ns3/output-stream-wrapper.h"
 #include <list>
 #include <vector>
+#include <time.h>
 
 namespace ns3{
-
+  namespace bs{
         class BufferAndSwitchRoutingTable : public Object
         {
         private:
                 typedef struct
                 {
                         Ipv4Address addr;
-                        char nextIntersection;
-                        uint32_t timeStamp;
+                        uint64_t posx;
+                        uint64_t posy;
+                        std::vector<char> currentRoad;
+                        time_t timeStamp;
                 }BSRoutingTableEntry;
 
-                std::list<BSRoutingTableEntry> m_bsTable;
-                std::vector<char> m_myPathToDst; //assume no loop in the path
-
-                uint32_t m_entryExpireTime;
+                std::vector<BSRoutingTableEntry> m_bsTable;
+                int64_t m_entryExpireTime;
         public:
                 BufferAndSwitchRoutingTable ();
                 virtual ~BufferAndSwitchRoutingTable ();
 
                 static TypeId GetTypeId();
-                void AddRoute (BSRoutingTableEntry entry);
-                void UpdateRoute (Ipv4Address ip, char nextIntersection);
-                Ipv4Address LookupRoute (char nextIntersection);
+                void UpdateRoute (Ipv4Address addr, uint64_t posx, uint64_t posy, std::vector<char> currentRoad);
+                std::vector<Ipv4Address> LookupRoute (std::vector<char> currentRoad);
 
         };
+  }
 }
 
 #endif //BUFFER_AND_SWITCH_ROUTING_TABLE_H
