@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on Fri Mar 29 01:39:43 2013 by SUMO netconvert Version 0.16.0
+<!-- generated on Wed Apr  3 19:00:13 2013 by SUMO netconvert Version 0.16.0
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/netconvertConfiguration.xsd">
@@ -427,9 +427,6 @@
         <lane id="L0102_0" index="0" speed="15.65" length="133.90" shape="11.35,445.05 145.25,445.05"/>
         <lane id="L0102_1" index="1" speed="15.65" length="133.90" shape="11.35,448.35 145.25,448.35"/>
     </edge>
-    <edge id="L0104" from="10" to="4" priority="2" type="25mi">
-        <lane id="L0104_0" index="0" speed="11.18" length="133.90" shape="451.65,308.05 451.65,441.95"/>
-    </edge>
     <edge id="L0107" from="1" to="7" priority="4" type="45mi">
         <lane id="L0107_0" index="0" speed="20.12" length="133.90" shape="-8.25,441.95 -8.25,308.05"/>
         <lane id="L0107_1" index="1" speed="20.12" length="133.90" shape="-4.95,441.95 -4.95,308.05"/>
@@ -497,6 +494,9 @@
         <lane id="L0915_0" index="0" speed="20.12" length="147.10" shape="291.75,298.55 291.75,151.45"/>
         <lane id="L0915_1" index="1" speed="20.12" length="147.10" shape="295.05,298.55 295.05,151.45"/>
         <lane id="L0915_2" index="2" speed="20.12" length="147.10" shape="298.35,298.55 298.35,151.45"/>
+    </edge>
+    <edge id="L1004" from="10" to="4" priority="2" type="25mi">
+        <lane id="L1004_0" index="0" speed="11.18" length="133.90" shape="451.65,308.05 451.65,441.95"/>
     </edge>
     <edge id="L1009" from="10" to="9" priority="3" type="35mi">
         <lane id="L1009_0" index="0" speed="15.65" length="137.20" shape="448.55,304.95 311.35,304.95"/>
@@ -750,7 +750,7 @@
         <request index="4" response="000000" foes="000000" cont="0"/>
         <request index="5" response="000011" foes="000011" cont="0"/>
     </junction>
-    <junction id="4" type="priority" x="450.00" y="450.00" incLanes="L0104_0 L0304_0 L0304_1" intLanes=":4_0_0 :4_1_0 :4_2_0" shape="454.75,449.95 454.75,443.45 453.25,441.95 450.05,441.95 448.55,443.45 448.55,449.95">
+    <junction id="4" type="priority" x="450.00" y="450.00" incLanes="L1004_0 L0304_0 L0304_1" intLanes=":4_0_0 :4_1_0 :4_2_0" shape="454.75,449.95 454.75,443.45 453.25,441.95 450.05,441.95 448.55,443.45 448.55,449.95">
         <request index="0" response="110" foes="110" cont="0"/>
         <request index="1" response="000" foes="001" cont="0"/>
         <request index="2" response="000" foes="001" cont="0"/>
@@ -806,7 +806,6 @@
     <connection from="L0102" to="L0208" fromLane="0" toLane="0" via=":2_0_0" dir="r" state="M"/>
     <connection from="L0102" to="L0203" fromLane="0" toLane="0" via=":2_1_0" dir="s" state="M"/>
     <connection from="L0102" to="L0203" fromLane="1" toLane="1" via=":2_2_0" dir="s" state="M"/>
-    <connection from="L0104" to="L0405" fromLane="0" toLane="0" via=":4_0_0" dir="r" state="m"/>
     <connection from="L0107" to="L0713" fromLane="0" toLane="0" via=":7_0_0" dir="s" state="M"/>
     <connection from="L0107" to="L0713" fromLane="1" toLane="1" via=":7_1_0" dir="s" state="M"/>
     <connection from="L0107" to="L0713" fromLane="2" toLane="2" via=":7_2_0" dir="s" state="M"/>
@@ -854,11 +853,12 @@
     <connection from="L0915" to="L1521" fromLane="1" toLane="1" via=":15_1_0" dir="s" state="M"/>
     <connection from="L0915" to="L1521" fromLane="2" toLane="2" via=":15_2_0" dir="s" state="M"/>
     <connection from="L0915" to="L1516" fromLane="2" toLane="1" via=":15_3_0" dir="l" state="m"/>
+    <connection from="L1004" to="L0405" fromLane="0" toLane="0" via=":4_0_0" dir="r" state="m"/>
     <connection from="L1009" to="L0903" fromLane="0" toLane="0" via=":9_4_0" dir="r" state="m"/>
     <connection from="L1009" to="L0908" fromLane="1" toLane="1" via=":9_5_0" dir="s" state="m"/>
     <connection from="L1009" to="L0915" fromLane="1" toLane="1" via=":9_6_0" dir="l" state="m"/>
     <connection from="L1009" to="L0915" fromLane="1" toLane="2" via=":9_7_0" dir="l" state="m"/>
-    <connection from="L1110" to="L0104" fromLane="0" toLane="0" via=":10_0_0" dir="r" state="M"/>
+    <connection from="L1110" to="L1004" fromLane="0" toLane="0" via=":10_0_0" dir="r" state="M"/>
     <connection from="L1110" to="L1009" fromLane="0" toLane="0" via=":10_1_0" dir="s" state="M"/>
     <connection from="L1110" to="L1009" fromLane="1" toLane="1" via=":10_2_0" dir="s" state="M"/>
     <connection from="L1117" to="L1723" fromLane="0" toLane="0" via=":17_0_0" dir="s" state="m"/>
@@ -889,7 +889,7 @@
     <connection from="L1516" to="L1610" fromLane="1" toLane="0" via=":16_4_0" dir="l" state="M"/>
     <connection from="L1521" to="L2120" fromLane="0" toLane="0" via=":21_0_0" dir="r" state="M"/>
     <connection from="L1521" to="L2120" fromLane="1" toLane="1" via=":21_1_0" dir="r" state="M"/>
-    <connection from="L1610" to="L0104" fromLane="0" toLane="0" via=":10_3_0" dir="s" state="m"/>
+    <connection from="L1610" to="L1004" fromLane="0" toLane="0" via=":10_3_0" dir="s" state="m"/>
     <connection from="L1610" to="L1009" fromLane="0" toLane="1" via=":10_4_0" dir="l" state="m"/>
     <connection from="L1617" to="L1723" fromLane="0" toLane="0" via=":17_2_0" dir="r" state="M"/>
     <connection from="L1617" to="L1718" fromLane="0" toLane="0" via=":17_3_0" dir="s" state="M"/>
@@ -934,10 +934,10 @@
 
     <connection from=":1_0" to="L0102" fromLane="0" toLane="0" dir="s" state="M"/>
     <connection from=":1_1" to="L0102" fromLane="0" toLane="1" dir="s" state="M"/>
-    <connection from=":10_0" to="L0104" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":10_0" to="L1004" fromLane="0" toLane="0" dir="s" state="M"/>
     <connection from=":10_1" to="L1009" fromLane="0" toLane="0" dir="s" state="M"/>
     <connection from=":10_2" to="L1009" fromLane="0" toLane="1" dir="s" state="M"/>
-    <connection from=":10_3" to="L0104" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":10_3" to="L1004" fromLane="0" toLane="0" dir="s" state="M"/>
     <connection from=":10_4" to="L1009" fromLane="0" toLane="1" dir="s" state="M"/>
     <connection from=":11_0" to="L1110" fromLane="0" toLane="0" dir="s" state="M"/>
     <connection from=":11_1" to="L1117" fromLane="0" toLane="0" dir="s" state="M"/>
