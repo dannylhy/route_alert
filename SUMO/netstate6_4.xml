@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- generated on Wed Apr 10 16:01:58 2013 by SUMO sumo Version 0.16.0
+<!-- generated on Fri Apr 12 17:18:20 2013 by SUMO sumo Version 0.16.0
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/sumoConfiguration.xsd">
@@ -13,6 +13,19 @@
     <output>
         <netstate-dump value="netstate6_4.xml"/>
     </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="200"/>
+    </time>
+
+    <processing>
+        <time-to-teleport value="-1"/>
+    </processing>
+
+    <report>
+        <verbose value="true"/>
+    </report>
 
 </configuration>
 -->
@@ -38041,5 +38054,29 @@
         </edge>
     </timestep>
     <timestep time="187.00">
+    </timestep>
+    <timestep time="188.00">
+    </timestep>
+    <timestep time="189.00">
+    </timestep>
+    <timestep time="190.00">
+    </timestep>
+    <timestep time="191.00">
+    </timestep>
+    <timestep time="192.00">
+    </timestep>
+    <timestep time="193.00">
+    </timestep>
+    <timestep time="194.00">
+    </timestep>
+    <timestep time="195.00">
+    </timestep>
+    <timestep time="196.00">
+    </timestep>
+    <timestep time="197.00">
+    </timestep>
+    <timestep time="198.00">
+    </timestep>
+    <timestep time="199.00">
     </timestep>
 </sumo-netstate>
