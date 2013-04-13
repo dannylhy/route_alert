@@ -12,6 +12,7 @@ def build(bld):
         'model/bs-routing.cc',
 	'model/bs-routing-table.cc',
 	'model/bs-routing-packet.cc',
+	'model/location.cc',
         'helper/bs-routing-helper.cc',
         ]
 
@@ -26,6 +27,7 @@ def build(bld):
         'model/bs-routing.h',
         'model/bs-routing-table.h',
         'model/bs-routing-packet.h',
+	'model/location.h',
         'helper/bs-routing-helper.h',
         ]
 
