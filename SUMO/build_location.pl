@@ -8,8 +8,17 @@ use Switch;
 use Data::Dumper;
 use XML::Parser;
 use Clone qw(clone);
+use Math::Round;
 
-open TCL_IN, "activity.tcl";
+if (@ARGV != 2) {
+    print "Usage: perl build_location.pl activity.tcl netstate.xml\n";
+    exit
+}
+
+my $activity_tcl = $ARGV[0];
+my $netstate_xml = $ARGV[1];
+
+open TCL_IN, $activity_tcl;
 open CC_OUT, ">location.cc";
 open H_OUT, ">location.h";
 
@@ -37,7 +46,7 @@ sub handle_start {
 	my $attr = shift;
 	my $val = shift;
 	#print "timestep $attr = $val\n";
-	$g_time = $val;
+	$g_time = nearest(0.1, $val);
     }
     elsif ($element eq "edge") {
 	my $attr = shift;
@@ -93,7 +102,7 @@ sub handle_end {
 # create object
 $p1 = new XML::Parser(Handlers => {Start => \&handle_start,
 				   End   => \&handle_end});
-$p1->parsefile('netstate6_4.xml');
+$p1->parsefile($netstate_xml);
 
 #print Dumper \%table;
 
