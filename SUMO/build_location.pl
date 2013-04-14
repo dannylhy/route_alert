@@ -122,7 +122,7 @@ print CC_OUT "namespace ns3{\nnamespace bs{\n";
 print CC_OUT "string GetRoad(uint32_t in_id) {\n";
 
 print CC_OUT "Time now_time = ns3::Simulator::Now();\n";
-print CC_OUT "double in_time = (double) (now_time.GetMilliSeconds() / 1000.0);\n";
+print CC_OUT "double in_time = (double) (((int) (now_time.GetMilliSeconds() / 100)) / 10.0f);\n";
 
 while ( my ($time, $vehicles) = each(%table)) {
 
