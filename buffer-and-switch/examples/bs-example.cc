@@ -25,6 +25,7 @@
 #include "ns3/applications-module.h"
 #include "ns3/config-store-module.h"
 #include "ns3/wifi-module.h"
+#include "ns3/ns2-mobility-helper.h"
 #include "ns3/internet-module.h"
 #include "ns3/bs-routing-helper.h"
 #include "ns3/bs-routing-table.h"
@@ -37,18 +38,21 @@
 
 #define NUM_NODE 2
 
-NS_LOG_COMPONENT_DEFINE ("SpExample");
+NS_LOG_COMPONENT_DEFINE ("BSExample");
 
 using namespace ns3;
 
 int main (int argc, char *argv[])
 {
-  uint16_t numNodes = 10;
+  uint16_t numNodes = 221;
 
-  LogComponentEnable("MacLow", LogLevel(LOG_DEBUG | LOG_PREFIX_TIME | LOG_PREFIX_NODE) );
-  LogComponentEnable("SpRouting", LogLevel(LOG_FUNCTION | LOG_DEBUG | LOG_PREFIX_TIME | LOG_PREFIX_NODE) );
-  LogComponentEnable("SpRoutingTable", LogLevel(LOG_FUNCTION | LOG_DEBUG | LOG_PREFIX_TIME | LOG_PREFIX_NODE) );
-
+  LogComponentEnable("Ns2MobilityHelper", LOG_LEVEL_DEBUG);
+  LogComponentEnable("MacLow", LogLevel(LOG_WARN) );
+  LogComponentEnable("BSRouting", LogLevel(LOG_WARN) );
+  LogComponentEnable("BSRoutingTable", LogLevel(LOG_WARN) ); 
+  
+  std::cout<< "************1" << std::endl;
+  ns3::Packet::EnablePrinting ();
   NodeContainer nodes;
   nodes.Create (numNodes);
 
@@ -66,23 +70,20 @@ int main (int argc, char *argv[])
   wifi.SetRemoteStationManager ("ns3::ConstantRateWifiManager", "DataMode",StringValue ("DsssRate1Mbps"), "ControlMode",StringValue ("DsssRate1Mbps"));
   wifiMac.SetType ("ns3::AdhocWifiMac");
   NetDeviceContainer devices = wifi.Install (wifiPhy, wifiMac, nodes);
-
-  MobilityHelper mobility;
+  
+  std::cout << "***********2" << std::endl;
+  Ns2MobilityHelper mobility ("/home/cs6250/proj/repos/ns-3-allinone/ns-3.16/scratch/mobility_1s.tcl");
+  mobility.Install ();
+  /*MobilityHelper mobility;
   Ptr<ListPositionAllocator> positionAlloc = CreateObject<ListPositionAllocator> ();
   positionAlloc->Add (Vector (0.0, 0.0, 0.0));
   positionAlloc->Add (Vector (10.0, 0.0, 0.0));
   positionAlloc->Add (Vector (20.0, 0.0, 0.0));
-  positionAlloc->Add (Vector (30.0, 0.0, 0.0));
-  positionAlloc->Add (Vector (40.0, 0.0, 0.0));
-  positionAlloc->Add (Vector (50.0, 10.0, 0.0));
-  positionAlloc->Add (Vector (50.0, 20.0, 0.0));
-  positionAlloc->Add (Vector (50.0, 30.0, 0.0));
-  positionAlloc->Add (Vector (50.0, 40.0, 0.0));
-  positionAlloc->Add (Vector (50.0, 50.0, 0.0));
   mobility.SetPositionAllocator (positionAlloc);
   mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
-  mobility.Install (nodes);
+  mobility.Install (nodes);*/
 
+  std::cout << "***********3" << std::endl;
   BufferAndSwitchRoutingHelper br;
   Ptr<bs::BufferAndSwitchRoutingTable> brt = CreateObject<bs::BufferAndSwitchRoutingTable> ();
   br.Set ("RoutingTable", PointerValue(brt));
@@ -101,11 +102,13 @@ int main (int argc, char *argv[])
   internet.Install (nodes);
   */
   
+  std::cout << "***********4" << std::endl;
   Ipv4AddressHelper ipv4;
   NS_LOG_INFO ("Assign IP Addresses.");
   ipv4.SetBase ("10.1.1.0", "255.255.255.0");
   Ipv4InterfaceContainer iface = ipv4.Assign (devices);
-
+ 
+  
   /*
   for (uint16_t i = 0; i < numNodes; i++)
     {
@@ -113,26 +116,33 @@ int main (int argc, char *argv[])
     }
   srt->UpdateRoute (100);
   */
-
-  UdpServerHelper echoServer (9);
+  
+  std::cout << "***********5" << std::endl;
+  /*UdpServerHelper echoServer (9);
 
   ApplicationContainer serverApps = echoServer.Install (nodes.Get (numNodes-1));
   serverApps.Start (Seconds (1.0));
-  serverApps.Stop (Seconds (5.0));
+  serverApps.Stop (Seconds (2.0));
 
-  UdpClientHelper client (iface.GetAddress (numNodes-1), 9);
+  UdpClientHelper client (iface.GetAddress (156), 9);
   client.SetAttribute ("MaxPackets", UintegerValue (2));
   client.SetAttribute ("Interval", TimeValue (Seconds (1)));
   client.SetAttribute ("PacketSize", UintegerValue (1000));
 
   ApplicationContainer clientApps;
   clientApps = client.Install (nodes.Get (0));
-  clientApps.Start (Seconds (2.0));
-  clientApps.Stop (Seconds (5.0));
+  clientApps.Start (Seconds (1.0));
+  clientApps.Stop (Seconds (2.0));
+*/
+  
+  std::cout << "}}}}}}}}}}}}}}}}}}}}}}" << nodes.Get(0)->GetId () << "  " << nodes.Get (0)->GetDevice (0)->GetAddress () << std::endl;
+  std::cout << "}}}}}}}}}}}}}}}}}}}}}}" << NodeList::GetNode (0)->GetId () << "  " << NodeList::GetNode (0)->GetDevice (0)->GetAddress () << std::endl;
+  Simulator::Stop (Seconds (60));
 
+  wifiPhy.EnablePcapAll (std::string ("bs"));
   Simulator::Run ();
   Simulator::Destroy ();
-
+  
   return 0;
 }
 

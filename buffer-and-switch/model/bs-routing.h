@@ -61,6 +61,15 @@ namespace ns3{
 			void SendPkt (Ipv4Address dst, MessageType type);
 			void BSRecv (Ptr<Socket> socket);
 			uint32_t GetNodeId ();
+			std::string GetNextRoad (std::string path);
+			std::string GetPreviousIntersection (std::string currentRoad)
+			{
+				return currentRoad.substr (1, 2);
+			}
+			std::string GetNextIntersection (std::string currentRoad)
+			{
+				return currentRoad.substr (3, 2);
+			}
 		private:
 			Ptr<BufferAndSwitchRoutingTable> m_rtable;
 			Ipv4Address m_address;

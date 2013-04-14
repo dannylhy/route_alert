@@ -27,6 +27,7 @@
 #include <list>
 #include <vector>
 #include <time.h>
+#include "ns3/simulator.h"
 
 namespace ns3{
  namespace bs{
@@ -38,8 +39,8 @@ namespace ns3{
 			Ipv4Address addr;
 			uint64_t posx;
 			uint64_t posy;
-			std::vector<char> currentRoad;
-			time_t timeStamp;
+			std::string currentRoad;
+			Time timeStamp;
 		}BSRoutingTableEntry; 
 		
 		std::vector<BSRoutingTableEntry> m_bsTable;
@@ -52,8 +53,8 @@ namespace ns3{
 		virtual ~BufferAndSwitchRoutingTable ();
 		
 		static TypeId GetTypeId();
-		void UpdateRoute (Ipv4Address addr, uint64_t posx, uint64_t posy, std::vector<char> currentRoad);
-		Ipv4Address LookupRoute (std::vector<char> currentRoad);
+		void UpdateRoute (Ipv4Address addr, uint64_t posx, uint64_t posy, std::string currentRoad);
+		Ipv4Address LookupRoute (std::string currentRoad);
 		void UpdateMyCurrentPos (uint64_t posx, uint64_t posy);
 
 		void SetMyCurrentPosx (uint64_t posx)
@@ -90,7 +91,8 @@ namespace ns3{
 		{
 			double i = pow ((posx1 - posx2), 2) + pow ((posy1 - posy2), 2);
 			return sqrt (i);
-		} 
+		}
+		
 		
 	};	
  }

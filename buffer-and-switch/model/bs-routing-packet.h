@@ -27,7 +27,6 @@
 #include "ns3/ipv4-address.h"
 #include <map>
 #include "ns3/nstime.h"
-#include "ns3/vector.h"
 
 namespace ns3{
  namespace bs{
@@ -81,12 +80,12 @@ namespace ns3{
 			
 			TypeId GetInstanceTypeId () const;
 
-                        void SetCurrentRoad(std::vector<char> currentRoad)
+                        void SetCurrentRoad(std::string currentRoad)
                         {
                                 this->m_currentRoad = currentRoad;
                         }
 
-                        std::vector<char> GetCurrentRoad(void)
+                        std::string GetCurrentRoad(void)
                         {
                                 return this->m_currentRoad;
                         }
@@ -111,7 +110,7 @@ namespace ns3{
 				return this->m_posy;
 			}
                 private:
-                        std::vector<char> m_currentRoad; //if it is a HelloPacket, m_currentRoad is current road
+                        std::string m_currentRoad; //if it is a HelloPacket, m_currentRoad is current road
 							 //if it is a AlertPacket, m_currentRoad is current path to destination
 			uint64_t m_posx; //X coordinate
 			uint64_t m_posy; //Y coordinate

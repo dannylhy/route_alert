@@ -26,7 +26,7 @@
 #include <vector>
 #include <boost/lexical_cast.hpp>
 
-#define EXPIRETIME 10
+#define EXPIRETIME 5
 
 using namespace std;
 
@@ -58,29 +58,45 @@ namespace ns3{
 		m_myCurrentPosy = posy;
 	}
 
-        void BufferAndSwitchRoutingTable::UpdateRoute (Ipv4Address addr, uint64_t posx, uint64_t posy, std::vector<char> currentRoad)
+
+	/*bool BufferAndSwitchRoutingTable::Compare (std::vector<char> vector1, std::vector<char> vector2)
+	{
+		if (vector1.size () != vector2.size ())
+		{
+			return false;
+		}
+	
+		for (uint32_t i = 0; i < vector1.size (); i++)
+		{
+			if (vector1[i] != vector2[i])
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}*/
+
+        void BufferAndSwitchRoutingTable::UpdateRoute (Ipv4Address addr, uint64_t posx, uint64_t posy, std::string currentRoad)
 	{
 		
 		for (std::vector<BSRoutingTableEntry>::iterator it = m_bsTable.begin (); it != m_bsTable.end (); it++)
 		{
-			time_t currentTime;
-			time (&currentTime);
-			NS_LOG_FUNCTION (currentTime);
 			//delete legancy entry
-			/*
-			if ( (currentTime - it->timeStamp) > m_entryExpireTime )
+			
+			if ( (ns3::Simulator::Now().GetSeconds () - it->timeStamp.GetSeconds ()) > m_entryExpireTime )
 			{
 				m_bsTable.erase (it);
 				return;
 			}
-			*/	
+				
 			//if find, update routing table
 			if ((it->addr).IsEqual (addr))
 			{
 				it->posx = posx;
 				it->posy = posy;
 				it->currentRoad = currentRoad;
-				time (&(it->timeStamp));
+				it->timeStamp = ns3::Simulator::Now();
 				return;
 			}
 		}
@@ -91,22 +107,21 @@ namespace ns3{
 		bsrEntry.posx = posx;
 		bsrEntry.posy = posy;
 		bsrEntry.currentRoad = currentRoad;
-		time (&(bsrEntry.timeStamp));
+		bsrEntry.timeStamp = ns3::Simulator::Now();
 		
 		m_bsTable.push_back (bsrEntry);
 		
 	}
        
-	Ipv4Address BufferAndSwitchRoutingTable::LookupRoute (std::vector<char> currentRoad)
+	Ipv4Address BufferAndSwitchRoutingTable::LookupRoute (std::string currentRoad)
 	{
-		std::vector<Ipv4Address> ipv4AddressVector;
-		Ipv4Address addr;
+		Ipv4Address addr("0.0.0.0");
 
 		double minDistance = std::numeric_limits<double>::max();
 
 		for (uint32_t i = 0; i < m_bsTable.size (); i++)
 		{
-			if ( (m_bsTable [i].currentRoad [0] == currentRoad [0]) && ( m_bsTable [i].currentRoad [1] == currentRoad [1]) )
+			if ( m_bsTable[i].currentRoad.compare (currentRoad) )
 			{
 				double dist = GetDistance (m_myCurrentPosx, m_bsTable [i].posx, m_myCurrentPosy, m_bsTable [i].posy);
 				if (dist < minDistance)

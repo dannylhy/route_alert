@@ -104,7 +104,7 @@ namespace ns3{
 	}
 	
 	//******************BSHeader**********************
-	//BSHeader::BSHeader (std::vector<char> currentRoad, uint64_t posx, uint64_t posy)
+	//BSHeader::BSHeader (std::string currentRoad, uint64_t posx, uint64_t posy)
 	BSHeader::BSHeader ()
 	{
 		m_posx = 0;
@@ -128,8 +128,8 @@ namespace ns3{
 	uint32_t BSHeader::GetSerializedSize (void) const
 	{
 		uint32_t size = 0;
-		size += 4;  //length of currentRoad vector (uint32_t). Limitation of number of junctions: 2^32
-		size += m_currentRoad.size(); //size of contents in currentRoad vector
+		size += 4;  //length of currentRoad string (uint32_t). Limitation of number of junctions: 2^32
+		size += m_currentRoad.length(); //size of contents in currentRoad string
 		size += 16; //posx, posy
 		return size;
 	}
@@ -139,7 +139,7 @@ namespace ns3{
 		uint32_t size;
 		uint32_t i;
 		
-		size = m_currentRoad.size ();
+		size = m_currentRoad.length ();
 		
 		start.WriteHtonU64 (m_posx);
 		start.WriteHtonU64 (m_posy);
@@ -170,7 +170,7 @@ namespace ns3{
 	{
 		os << " Position X : " << m_posx
 		   << " Position Y : " << m_posy;
-		uint32_t size = m_currentRoad.size ();
+		uint32_t size = m_currentRoad.length ();
 		os << " currentRoad: ";
 		for (uint32_t i=0; i<size; i++)
 		{
@@ -179,15 +179,6 @@ namespace ns3{
 	}
  }	
 }
-
-
-
-
-
-
-
-
-
 
 
 
