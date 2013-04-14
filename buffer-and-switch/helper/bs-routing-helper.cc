@@ -19,35 +19,35 @@
  */
 
 
-#include "bs-routing-helper.h"
-#include "bs-routing.h"
+#include "ns3/bs-routing-helper.h"
+#include "ns3/bs-routing.h"
 #include "ns3/node-list.h"
 #include "ns3/names.h"
 #include "ns3/ipv4-list-routing.h"
 
 namespace ns3 {
 
-        BSRoutingHelper::BSRoutingHelper ()
+        BufferAndSwitchRoutingHelper::BufferAndSwitchRoutingHelper ()
                         : Ipv4RoutingHelper ()
         {
-                m_agentFactory.SetTypeId ("ns3::bs::RoutingProtocol");
+                m_agentFactory.SetTypeId ("ns3::bs::BufferAndSwitchRouting");
         }
 
-        BSRoutingHelper* BSRoutingHelper::Copy (void) const
+        BufferAndSwitchRoutingHelper* BufferAndSwitchRoutingHelper::Copy (void) const
         {
-                return new BSRoutingHelper (*this);
+                return new BufferAndSwitchRoutingHelper (*this);
         }
 
-        Ptr<Ipv4RoutingProtocol> BSRoutingHelper:: Create (Ptr<Node> node) const
-        {
-                Ptr<bs::BufferAndSwitchRouting> agent = m_agentFactory.Create<bs::BufferAndSwitchRouting> ();
+        Ptr<Ipv4RoutingProtocol> BufferAndSwitchRoutingHelper:: Create (Ptr<Node> node) const
+        {                
+		Ptr<bs::BufferAndSwitchRouting> agent = m_agentFactory.Create<bs::BufferAndSwitchRouting> ();
                 node->AggregateObject (agent);
                 return agent;
         }
 
-        void BSRoutingHelper::Set (std::string name, const AttributeValue &value)
-        {
-                m_agentFactory.Set (name, value);
-        }
+	void BufferAndSwitchRoutingHelper::Set (std::string name, const AttributeValue &value)
+	{
+		m_agentFactory.Set (name, value);
+	}
 
 }

@@ -28,20 +28,20 @@
 #include "ns3/ipv4-routing-helper.h"
 
 namespace ns3{
-        class BSRoutingHelper : public Ipv4RoutingHelper
-        {
-                public:
-                        BSRoutingHelper ();
-
-                        BSRoutingHelper* Copy (void) const;
-
-                        virtual Ptr<Ipv4RoutingProtocol> Create (Ptr<Node> node) const;
-
-                        void Set (std::string name, const AttributeValue &value);
-
-                private:
-                        ObjectFactory m_agentFactory;
-        };
+	class BufferAndSwitchRoutingHelper : public Ipv4RoutingHelper
+	{
+		public:
+			BufferAndSwitchRoutingHelper ();
+		
+			BufferAndSwitchRoutingHelper* Copy (void) const;
+		
+			virtual Ptr<Ipv4RoutingProtocol> Create (Ptr<Node> node) const;
+		
+			void Set (std::string name, const AttributeValue &value);
+	
+		private:
+			ObjectFactory m_agentFactory;
+	};
 }
 
 

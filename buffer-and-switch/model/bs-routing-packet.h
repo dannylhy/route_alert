@@ -30,42 +30,42 @@
 #include "ns3/vector.h"
 
 namespace ns3{
-   namespace bs{
-
+ namespace bs{
         enum MessageType
         {
+		MSG_INIT = 0,//Used in initialization
                 MSG_HELLO = 1, //Hello Message
                 MSG_ALERT = 2, //Alert Message
-                MSG_RREQ = 3,  //Routing Request Message
+		MSG_RREQ = 3,  //Routing Request Message
         };
-
-        class TypeHeader : public Header
-        {
-                public:
-                        TypeHeader (MessageType t);
+	
+	class TypeHeader : public Header
+	{
+		public:	
+			TypeHeader (MessageType t);
                         // from Header
                         static TypeId GetTypeId ();
                         uint32_t GetSerializedSize (void) const;
                         void Serialize (Buffer::Iterator start) const;
                         uint32_t Deserialize (Buffer::Iterator start);
                         void Print (std::ostream &os) const;
+			
+			TypeId GetInstanceTypeId () const;
+			
+			MessageType GetType (void)
+			{
+				return m_type;
+			}
+			
+			bool IsValid (void)
+			{
+				return m_valid;
+			}
 
-                        TypeId GetInstanceTypeId () const;
-
-                        MessageType GetType (void)
-                        {
-                                return m_type;
-                        }
-
-                        bool IsValid (void)
-                        {
-                                return m_valid;
-                        }
-
-                private:
-                        MessageType m_type;
-                        bool m_valid;
-        };
+		private:
+			MessageType m_type;
+			bool m_valid;
+	};
 
         class BSHeader : public Header
         {
@@ -78,8 +78,8 @@ namespace ns3{
                         void Serialize (Buffer::Iterator start) const;
                         uint32_t Deserialize (Buffer::Iterator start);
                         void Print (std::ostream &os) const;
-
-                        TypeId GetInstanceTypeId () const;
+			
+			TypeId GetInstanceTypeId () const;
 
                         void SetCurrentRoad(std::vector<char> currentRoad)
                         {
@@ -91,32 +91,32 @@ namespace ns3{
                                 return this->m_currentRoad;
                         }
 
-                        void SetPosx (uint64_t posx)
-                        {
-                                this->m_posx = posx;
-                        }
+			void SetPosx (uint64_t posx)
+			{
+				this->m_posx = posx;
+			}
 
-                        uint64_t GetPosx (void)
-                        {
-                                return this->m_posx;
-                        }
+			uint64_t GetPosx (void)
+			{
+				return this->m_posx;	
+			}
 
-                        void SetPosy (uint64_t posy)
-                        {
-                                this->m_posy = posy;
-                        }
+			void SetPosy (uint64_t posy)
+			{
+				this->m_posy = posy;
+			}
 
-                        uint64_t GetPosy (void)
-                        {
-                                return this->m_posy;
-                        }
+			uint64_t GetPosy (void)
+			{
+				return this->m_posy;
+			}
                 private:
                         std::vector<char> m_currentRoad; //if it is a HelloPacket, m_currentRoad is current road
-                                                         //if it is a AlertPacket, m_currentRoad is current path to destination
-                        uint64_t m_posx; //X coordinate
-                        uint64_t m_posy; //Y coordinate
+							 //if it is a AlertPacket, m_currentRoad is current path to destination
+			uint64_t m_posx; //X coordinate
+			uint64_t m_posy; //Y coordinate
         };
-   }
+ }
 }
 
 #endif /*BUFFER_AND_SWITCH_ROUTING_PACKET_H*/
