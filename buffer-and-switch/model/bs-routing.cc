@@ -165,6 +165,10 @@ namespace ns3{
 				}
 
 				std::string tmp = GetRoad (GetNodeId ());
+                                if (tmp.length() == 0) {
+                                    NS_LOG_WARN("No road returned. Not active. Skipping.");
+                                    return;
+                                }
 				if (tmp.at (0) != ';')
 				{
 					currentRoad = tmp;
@@ -233,14 +237,13 @@ namespace ns3{
 				posx = MM->GetPosition ().x;
 				posy = MM->GetPosition ().y;
 				
-				NS_LOG_WARN ("*****************" << posx);
-				NS_LOG_WARN ("*****************" << posy);
-				//NS_LOG_WARN ("node ID " << ns3::Node::GetId ());
-				NS_LOG_WARN ("IP " << m_address);
-				
+				NS_LOG_WARN ("************** id: " << GetNodeId() << " ip address: " << m_address << " time: " << ns3::Simulator::Now().GetMilliSeconds() << " x: " << posx << " y: " << posy);
 				
 				std::string tmp = GetRoad (GetNodeId ());
-
+                                if (tmp.length() == 0) {
+                                    NS_LOG_WARN("No road returned. Skipping.");
+                                    return;
+                                }
 				if (tmp.at (0) != ';')
 				{
 					currentRoad = tmp;
@@ -463,7 +466,7 @@ namespace ns3{
 	{
 		uint8_t buf[4];
 		m_address.Serialize (buf);
-		return buf[3];
+		return (buf[3] - 1); // IP Address starts from 1, which is node 0
 	}
  }
 }
