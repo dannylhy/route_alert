@@ -124,13 +124,14 @@ print CC_OUT "string GetRoad(uint32_t in_id) {\n";
 print CC_OUT "Time now_time = ns3::Simulator::Now();\n";
 print CC_OUT "double in_time = (double) (((int) ((now_time.GetMilliSeconds() / 100)+0.5)) / 10.0f);\n";
 
-while ( my ($time, $vehicles) = each(%table)) {
+foreach my $time (sort { $a <=> $b } keys %table) {
+    my $vehicles = $table{$time};
 
     if ($first) {
-	print CC_OUT "else if (in_time == $time) {\n";
+	printf CC_OUT "else if (in_time == %.1f) {\n", $time;
     }
     else {
-	print CC_OUT "if (in_time == $time) {\n";
+	printf CC_OUT "if (in_time == %.1f) {\n", $time;
 	$first = 1;
     }
 
@@ -141,7 +142,9 @@ while ( my ($time, $vehicles) = each(%table)) {
     }
 
     print CC_OUT "\tswitch(in_id) {\n";
-    while (my ($v_id, $v_stats) = each (%{$vehicles})) {
+    foreach my $v_id (sort { $a <=> $b } keys %{$vehicles}) {
+	my $v_stats = $vehicles->{$v_id};
+
 	print CC_OUT "\t\tcase $v_id :\treturn \"$v_stats->{'road'}\";\n";
     }
     print CC_OUT "\t\tdefault :\treturn \"\";\n";
