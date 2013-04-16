@@ -77,9 +77,8 @@ namespace ns3{
 		return true;
 	}*/
 
-        void BufferAndSwitchRoutingTable::UpdateRoute (Ipv4Address addr, uint64_t posx, uint64_t posy, std::string currentRoad)
+        void BufferAndSwitchRoutingTable::UpdateRoute (Ipv4Address addr, uint64_t posx, uint64_t posy, std::string currentRoad, uint32_t id)
 	{
-		
 		for (std::vector<BSRoutingTableEntry>::iterator it = m_bsTable.begin (); it != m_bsTable.end (); it++)
 		{
 			//delete legancy entry
@@ -87,6 +86,7 @@ namespace ns3{
 			if ( (ns3::Simulator::Now().GetSeconds () - it->timeStamp.GetSeconds ()) > m_entryExpireTime )
 			{
 				m_bsTable.erase (it);
+				NS_LOG_WARN ("delete legancy entry");
 				return;
 			}
 				
@@ -97,6 +97,8 @@ namespace ns3{
 				it->posy = posy;
 				it->currentRoad = currentRoad;
 				it->timeStamp = ns3::Simulator::Now();
+				it->id = id;
+				NS_LOG_WARN ("update existing entry, ip = " << addr << " currentRoad = " << currentRoad << " time = " << ns3::Simulator::Now().GetSeconds ());
 				return;
 			}
 		}
@@ -108,22 +110,32 @@ namespace ns3{
 		bsrEntry.posy = posy;
 		bsrEntry.currentRoad = currentRoad;
 		bsrEntry.timeStamp = ns3::Simulator::Now();
+		bsrEntry.id = id;
 		
 		m_bsTable.push_back (bsrEntry);
-		
+		NS_LOG_WARN ("insert new entry, ip = " << addr << " currentRoad = " << currentRoad << " time = " << ns3::Simulator::Now().GetSeconds ());
 	}
        
-	Ipv4Address BufferAndSwitchRoutingTable::LookupRoute (std::string currentRoad)
+	Ipv4Address BufferAndSwitchRoutingTable::LookupRoute (std::string currentRoad, uint64_t myCurrentPosx, uint64_t myCurrentPosy,uint32_t id)
 	{
 		Ipv4Address addr("0.0.0.0");
 
 		double minDistance = std::numeric_limits<double>::max();
-
+		int num = 0;
 		for (uint32_t i = 0; i < m_bsTable.size (); i++)
 		{
-			if ( m_bsTable[i].currentRoad.compare (currentRoad) )
+			if (m_bsTable[i].id == id)
 			{
-				double dist = GetDistance (m_myCurrentPosx, m_bsTable [i].posx, m_myCurrentPosy, m_bsTable [i].posy);
+				num++;
+			}
+		}
+		std::cout << "LookupRoute : routing table has " << num << " entries" << std::endl; 
+		for (uint32_t i = 0; i < m_bsTable.size (); i++)
+		{
+			
+			if ( (m_bsTable[i].id == id) && (m_bsTable[i].currentRoad.compare (currentRoad)) )
+			{
+				double dist = GetDistance (myCurrentPosx, m_bsTable [i].posx, myCurrentPosy, m_bsTable [i].posy);
 				if (dist < minDistance)
 				{
 					minDistance = dist;

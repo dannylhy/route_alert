@@ -157,9 +157,10 @@ namespace ns3{
 		m_posy = i.ReadNtohU64 ();
 		
 		uint32_t size = i.ReadNtohU32 ();
-		if (0 != size)
+		while (size != 0)
 		{
 			m_currentRoad.push_back ((char)i.ReadU8 ());
+			size--;
 		}
 		uint32_t dist = i.GetDistanceFrom (start);
 		NS_ASSERT (dist == GetSerializedSize ());
