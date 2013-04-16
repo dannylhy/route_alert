@@ -61,6 +61,8 @@ namespace ns3{
 			void SendPkt (Ipv4Address dst, MessageType type);
 			void BSRecv (Ptr<Socket> socket);
 			uint32_t GetNodeId ();
+			bool OnThePath (std::string currentRoad, std::string path);
+			void SendAlertPacket ();
 			std::string GetNextRoad (std::string path);
 			std::string GetPreviousIntersection (std::string currentRoad)
 			{
@@ -80,6 +82,8 @@ namespace ns3{
 			Timer m_helloIntervalTimer;
 			Time m_helloInterval;
 			IpL4Protocol::DownTargetCallback m_downTarget;
+			int m_alertSent;
+			std::string m_currentRoad;
 	};
  }
 }
