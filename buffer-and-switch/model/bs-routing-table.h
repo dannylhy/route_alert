@@ -41,20 +41,21 @@ namespace ns3{
 			uint64_t posy;
 			std::string currentRoad;
 			Time timeStamp;
+			uint32_t id;
 		}BSRoutingTableEntry; 
 		
 		std::vector<BSRoutingTableEntry> m_bsTable;
 		int64_t m_entryExpireTime;
 		bool m_isEmergencyV;
 		uint64_t m_myCurrentPosx;
-		uint64_t m_myCurrentPosy;;
+		uint64_t m_myCurrentPosy;
 	public:
 		BufferAndSwitchRoutingTable ();
 		virtual ~BufferAndSwitchRoutingTable ();
 		
 		static TypeId GetTypeId();
-		void UpdateRoute (Ipv4Address addr, uint64_t posx, uint64_t posy, std::string currentRoad);
-		Ipv4Address LookupRoute (std::string currentRoad);
+		void UpdateRoute (Ipv4Address addr, uint64_t posx, uint64_t posy, std::string currentRoad, uint32_t id);
+		Ipv4Address LookupRoute (std::string currentRoad, uint64_t myCurrentPosx, uint64_t myCurrentPosy, uint32_t id);
 		void UpdateMyCurrentPos (uint64_t posx, uint64_t posy);
 
 		void SetMyCurrentPosx (uint64_t posx)
