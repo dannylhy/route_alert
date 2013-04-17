@@ -13,7 +13,7 @@
 		<flow id="F08" from="L2216" to="L1004" vtype="CarA" number="10" departLane="best"/>
 		<flow id="F09" from="L0511" to="L1723" vtype="CarA" number="10" departLane="best"/>
 		<flow id="F10" from="L0612" to="L1824" vtype="CarA" number="10" departLane="best"/>
-		<flow id="F11" from="L2418" to="L1206" vtype="CarA" number="35" departLane="0"/>
+		<flow id="F11" from="L1812" to="L1206" vtype="CarA" number="35" departLane="best"/>
 	</interval>
 </flows>
 	
