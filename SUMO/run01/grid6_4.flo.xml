@@ -1,6 +1,6 @@
 <flows>
 	<flow id="rAmb" from="L1913" to="L1206" vtype="Amb" color="0,1,0" begin="25" end="26" number="1" />
-	<interval begin="0" end="100">
+	<interval begin="0" end="150">
 		<flow id="F00" from="L1913" to="L0701" vtype="CarA" number="50" departLane="best"/>
 		<flow id="F01" from="L0107" to="L1319" vtype="CarA" number="35" departLane="best"/>
 		<flow id="F02" from="L0102" to="L0506" vtype="CarA" number="10" departLane="best"/>
