@@ -1,23 +1,18 @@
 <?xml version="1.0"?>
 
-<!-- generated on Tue Apr 16 18:28:42 2013 by SUMO duarouter Version 0.16.0
+<!-- generated on Wed Apr 17 12:53:51 2013 by SUMO duarouter Version 0.16.0
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/duarouterConfiguration.xsd">
 
     <input>
-        <net-file value="grid6_4.net.xml"/>
-        <flow-files value="grid6_4_2.flo.xml"/>
+        <net-file value="../grid6_4.net.xml"/>
+        <flow-files value="grid6_4.flo.xml"/>
     </input>
 
     <output>
-        <output-file value="grid6_4_2.rou.xml"/>
+        <output-file value="grid6_4.rou.xml"/>
     </output>
-
-    <time>
-        <begin value="0"/>
-        <end value="200"/>
-    </time>
 
 </configuration>
 -->

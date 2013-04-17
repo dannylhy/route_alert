@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/duarouterConfiguration.xsd">
+    <input>
+        <net-file value="grid6_4.net.xml"/>
+        <flow-files value="grid6_4.flo.xml"/>
+    </input>
+	<output>
+		<output value="grid6_4.rou.xml"/>
+	</output>
+    <time>
+        <begin value="0"/>
+        <end value="200"/>
+    </time>
+</configuration>
