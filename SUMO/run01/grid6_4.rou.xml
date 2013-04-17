@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- generated on Wed Apr 17 12:53:51 2013 by SUMO duarouter Version 0.16.0
+<!-- generated on Wed Apr 17 14:23:09 2013 by SUMO duarouter Version 0.16.0
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/duarouterConfiguration.xsd">
@@ -12,7 +12,13 @@
 
     <output>
         <output-file value="grid6_4.rou.xml"/>
+        <vtype-output value=""/>
     </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="200"/>
+    </time>
 
 </configuration>
 -->
@@ -57,14 +63,8 @@
     <vehicle id="F11_0" depart="0.00" departLane="random">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
-    <vehicle id="F12_0" depart="0.00" departLane="random">
-        <route edges="L1913 L1314 L1415 L1516 L1617 L1718 L1812 L1206"/>
-    </vehicle>
     <vehicle id="F13_0" depart="0.00" departLane="random">
         <route edges="L0612 L1211 L1110 L1009 L0908 L0807 L0713 L1319"/>
-    </vehicle>
-    <vehicle id="rAmb_0" depart="0.00" color="0.00,1.00,0.00">
-        <route color="0.00,1.00,0.00" edges="L1913 L1314 L1415 L1516 L1617 L1718 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_1" depart="2.00" departLane="random">
         <route edges="L1913 L1307 L0701"/>
@@ -111,6 +111,12 @@
     <vehicle id="F06_1" depart="10.00" departLane="random">
         <route edges="L0208 L0814 L1420"/>
     </vehicle>
+    <vehicle id="F075_1" depart="10.00" departLane="random">
+        <route edges="L2115 L1509 L0903"/>
+    </vehicle>
+    <vehicle id="F07_1" depart="10.00" departLane="random">
+        <route edges="L0309 L0915 L1521"/>
+    </vehicle>
     <vehicle id="F08_1" depart="10.00" departLane="random">
         <route edges="L2216 L1610 L1004"/>
     </vehicle>
@@ -122,9 +128,6 @@
     </vehicle>
     <vehicle id="F11_1" depart="10.00" departLane="random">
         <route edges="L2418 L1812 L1206"/>
-    </vehicle>
-    <vehicle id="F12_1" depart="10.00" departLane="random">
-        <route edges="L1913 L1314 L1415 L1516 L1617 L1718 L1812 L1206"/>
     </vehicle>
     <vehicle id="F01_4" depart="11.00" departLane="random">
         <route edges="L0107 L0713 L1319"/>
@@ -174,10 +177,10 @@
     <vehicle id="F06_2" depart="20.00" departLane="random">
         <route edges="L0208 L0814 L1420"/>
     </vehicle>
-    <vehicle id="F075_1" depart="20.00" departLane="random">
+    <vehicle id="F075_2" depart="20.00" departLane="random">
         <route edges="L2115 L1509 L0903"/>
     </vehicle>
-    <vehicle id="F07_1" depart="20.00" departLane="random">
+    <vehicle id="F07_2" depart="20.00" departLane="random">
         <route edges="L0309 L0915 L1521"/>
     </vehicle>
     <vehicle id="F08_2" depart="20.00" departLane="random">
@@ -191,9 +194,6 @@
     </vehicle>
     <vehicle id="F11_2" depart="20.00" departLane="random">
         <route edges="L2418 L1812 L1206"/>
-    </vehicle>
-    <vehicle id="F12_2" depart="20.00" departLane="random">
-        <route edges="L1913 L1314 L1415 L1516 L1617 L1718 L1812 L1206"/>
     </vehicle>
     <vehicle id="F13_5" depart="20.00" departLane="random">
         <route edges="L0612 L1211 L1110 L1009 L0908 L0807 L0713 L1319"/>
@@ -209,6 +209,9 @@
     </vehicle>
     <vehicle id="F13_6" depart="24.00" departLane="random">
         <route edges="L0612 L1211 L1110 L1009 L0908 L0807 L0713 L1319"/>
+    </vehicle>
+    <vehicle id="rAmb_0" depart="25.00" color="0.00,1.00,0.00">
+        <route color="0.00,1.00,0.00" edges="L1913 L1314 L1415 L1516 L1617 L1718 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_13" depart="26.00" departLane="random">
         <route edges="L1913 L1307 L0701"/>
@@ -243,6 +246,12 @@
     <vehicle id="F06_3" depart="30.00" departLane="random">
         <route edges="L0208 L0814 L1420"/>
     </vehicle>
+    <vehicle id="F075_3" depart="30.00" departLane="random">
+        <route edges="L2115 L1509 L0903"/>
+    </vehicle>
+    <vehicle id="F07_3" depart="30.00" departLane="random">
+        <route edges="L0309 L0915 L1521"/>
+    </vehicle>
     <vehicle id="F08_3" depart="30.00" departLane="random">
         <route edges="L2216 L1610 L1004"/>
     </vehicle>
@@ -254,9 +263,6 @@
     </vehicle>
     <vehicle id="F11_3" depart="30.00" departLane="random">
         <route edges="L2418 L1812 L1206"/>
-    </vehicle>
-    <vehicle id="F12_3" depart="30.00" departLane="random">
-        <route edges="L1913 L1314 L1415 L1516 L1617 L1718 L1812 L1206"/>
     </vehicle>
     <vehicle id="F01_11" depart="31.00" departLane="random">
         <route edges="L0107 L0713 L1319"/>
@@ -306,10 +312,10 @@
     <vehicle id="F06_4" depart="40.00" departLane="random">
         <route edges="L0208 L0814 L1420"/>
     </vehicle>
-    <vehicle id="F075_2" depart="40.00" departLane="random">
+    <vehicle id="F075_4" depart="40.00" departLane="random">
         <route edges="L2115 L1509 L0903"/>
     </vehicle>
-    <vehicle id="F07_2" depart="40.00" departLane="random">
+    <vehicle id="F07_4" depart="40.00" departLane="random">
         <route edges="L0309 L0915 L1521"/>
     </vehicle>
     <vehicle id="F08_4" depart="40.00" departLane="random">
@@ -323,9 +329,6 @@
     </vehicle>
     <vehicle id="F11_4" depart="40.00" departLane="random">
         <route edges="L2418 L1812 L1206"/>
-    </vehicle>
-    <vehicle id="F12_4" depart="40.00" departLane="random">
-        <route edges="L1913 L1314 L1415 L1516 L1617 L1718 L1812 L1206"/>
     </vehicle>
     <vehicle id="F13_10" depart="40.00" departLane="random">
         <route edges="L0612 L1211 L1110 L1009 L0908 L0807 L0713 L1319"/>
@@ -375,6 +378,12 @@
     <vehicle id="F06_5" depart="50.00" departLane="random">
         <route edges="L0208 L0814 L1420"/>
     </vehicle>
+    <vehicle id="F075_5" depart="50.00" departLane="random">
+        <route edges="L2115 L1509 L0903"/>
+    </vehicle>
+    <vehicle id="F07_5" depart="50.00" departLane="random">
+        <route edges="L0309 L0915 L1521"/>
+    </vehicle>
     <vehicle id="F08_5" depart="50.00" departLane="random">
         <route edges="L2216 L1610 L1004"/>
     </vehicle>
@@ -386,9 +395,6 @@
     </vehicle>
     <vehicle id="F11_5" depart="50.00" departLane="random">
         <route edges="L2418 L1812 L1206"/>
-    </vehicle>
-    <vehicle id="F12_5" depart="50.00" departLane="random">
-        <route edges="L1913 L1314 L1415 L1516 L1617 L1718 L1812 L1206"/>
     </vehicle>
     <vehicle id="F01_18" depart="51.00" departLane="random">
         <route edges="L0107 L0713 L1319"/>
@@ -438,10 +444,10 @@
     <vehicle id="F06_6" depart="60.00" departLane="random">
         <route edges="L0208 L0814 L1420"/>
     </vehicle>
-    <vehicle id="F075_3" depart="60.00" departLane="random">
+    <vehicle id="F075_6" depart="60.00" departLane="random">
         <route edges="L2115 L1509 L0903"/>
     </vehicle>
-    <vehicle id="F07_3" depart="60.00" departLane="random">
+    <vehicle id="F07_6" depart="60.00" departLane="random">
         <route edges="L0309 L0915 L1521"/>
     </vehicle>
     <vehicle id="F08_6" depart="60.00" departLane="random">
@@ -455,9 +461,6 @@
     </vehicle>
     <vehicle id="F11_6" depart="60.00" departLane="random">
         <route edges="L2418 L1812 L1206"/>
-    </vehicle>
-    <vehicle id="F12_6" depart="60.00" departLane="random">
-        <route edges="L1913 L1314 L1415 L1516 L1617 L1718 L1812 L1206"/>
     </vehicle>
     <vehicle id="F13_15" depart="60.00" departLane="random">
         <route edges="L0612 L1211 L1110 L1009 L0908 L0807 L0713 L1319"/>
@@ -507,6 +510,12 @@
     <vehicle id="F06_7" depart="70.00" departLane="random">
         <route edges="L0208 L0814 L1420"/>
     </vehicle>
+    <vehicle id="F075_7" depart="70.00" departLane="random">
+        <route edges="L2115 L1509 L0903"/>
+    </vehicle>
+    <vehicle id="F07_7" depart="70.00" departLane="random">
+        <route edges="L0309 L0915 L1521"/>
+    </vehicle>
     <vehicle id="F08_7" depart="70.00" departLane="random">
         <route edges="L2216 L1610 L1004"/>
     </vehicle>
@@ -518,9 +527,6 @@
     </vehicle>
     <vehicle id="F11_7" depart="70.00" departLane="random">
         <route edges="L2418 L1812 L1206"/>
-    </vehicle>
-    <vehicle id="F12_7" depart="70.00" departLane="random">
-        <route edges="L1913 L1314 L1415 L1516 L1617 L1718 L1812 L1206"/>
     </vehicle>
     <vehicle id="F01_25" depart="71.00" departLane="random">
         <route edges="L0107 L0713 L1319"/>
@@ -570,10 +576,10 @@
     <vehicle id="F06_8" depart="80.00" departLane="random">
         <route edges="L0208 L0814 L1420"/>
     </vehicle>
-    <vehicle id="F075_4" depart="80.00" departLane="random">
+    <vehicle id="F075_8" depart="80.00" departLane="random">
         <route edges="L2115 L1509 L0903"/>
     </vehicle>
-    <vehicle id="F07_4" depart="80.00" departLane="random">
+    <vehicle id="F07_8" depart="80.00" departLane="random">
         <route edges="L0309 L0915 L1521"/>
     </vehicle>
     <vehicle id="F08_8" depart="80.00" departLane="random">
@@ -587,9 +593,6 @@
     </vehicle>
     <vehicle id="F11_8" depart="80.00" departLane="random">
         <route edges="L2418 L1812 L1206"/>
-    </vehicle>
-    <vehicle id="F12_8" depart="80.00" departLane="random">
-        <route edges="L1913 L1314 L1415 L1516 L1617 L1718 L1812 L1206"/>
     </vehicle>
     <vehicle id="F13_20" depart="80.00" departLane="random">
         <route edges="L0612 L1211 L1110 L1009 L0908 L0807 L0713 L1319"/>
@@ -639,6 +642,12 @@
     <vehicle id="F06_9" depart="90.00" departLane="random">
         <route edges="L0208 L0814 L1420"/>
     </vehicle>
+    <vehicle id="F075_9" depart="90.00" departLane="random">
+        <route edges="L2115 L1509 L0903"/>
+    </vehicle>
+    <vehicle id="F07_9" depart="90.00" departLane="random">
+        <route edges="L0309 L0915 L1521"/>
+    </vehicle>
     <vehicle id="F08_9" depart="90.00" departLane="random">
         <route edges="L2216 L1610 L1004"/>
     </vehicle>
@@ -650,9 +659,6 @@
     </vehicle>
     <vehicle id="F11_9" depart="90.00" departLane="random">
         <route edges="L2418 L1812 L1206"/>
-    </vehicle>
-    <vehicle id="F12_9" depart="90.00" departLane="random">
-        <route edges="L1913 L1314 L1415 L1516 L1617 L1718 L1812 L1206"/>
     </vehicle>
     <vehicle id="F01_32" depart="91.00" departLane="random">
         <route edges="L0107 L0713 L1319"/>
