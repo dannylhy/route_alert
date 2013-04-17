@@ -1,8 +1,8 @@
 <flows>
-	<flow id="rAmb" from="L1913" to="L1206" vtype="Amb" color="0,1,0" begin="5" end="6" number="1" />
+	<flow id="rAmb" from="L1913" to="L1206" vtype="Amb" color="0,1,0" begin="0" end="1" number="1" />
 	<interval begin="0" end="100">
 		<flow id="F00" from="L1913" to="L0701" vtype="CarA" number="50" departLane="random"/>
-		<flow id="F01" from="L0107" to="L1319" vtype="CarA" number="50" departLane="random"/>
+		<flow id="F01" from="L0107" to="L1319" vtype="CarA" number="35" departLane="random"/>
 		<flow id="F02" from="L0102" to="L0506" vtype="CarA" number="10" departLane="random"/>
 		<flow id="F03" from="L1211" to="L0807" vtype="CarA" number="10" departLane="random"/>
 		<flow id="F04" from="L1314" to="L1718" vtype="CarA" number="10" departLane="random"/>
@@ -14,8 +14,8 @@
 		<flow id="F09" from="L0511" to="L1723" vtype="CarA" number="10" departLane="random"/>
 		<flow id="F10" from="L0612" to="L1824" vtype="CarA" number="10" departLane="random"/>
 		<flow id="F11" from="L2418" to="L1206" vtype="CarA" number="10" departLane="random"/>
-		<flow id="F12" from="L1913" to="L1206" vtype="CarA" number="10" departLane="random"/>
-		<flow id="F13" from="L0612" to="L1319" vtype="CarA" number="10" departLane="random"/>
+		<flow id="F12" from="L1913" to="L1206" vtype="CarA" number="20" departLane="random"/>
+		<flow id="F13" from="L0612" to="L1319" vtype="CarA" number="15" departLane="random"/>
 	</interval>
 </flows>
 	
