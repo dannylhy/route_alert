@@ -41941,4 +41941,78 @@
                 <vehicle id="F09_4" pos="122.08" speed="0.00"/>
                 <vehicle id="F09_3" pos="129.58" speed="0.00"/>
                 <vehicle id="F09_2" pos="137.09" speed="0.00"/>
-                <vehicle id="F09_1" pos="144.60" 
+                <vehicle id="F09_1" pos="144.60" speed="0.00"/>
+            </lane>
+        </edge>
+        <edge id="L1420">
+            <lane id="L1420_0">
+                <vehicle id="F06_6" pos="16.66" speed="10.41"/>
+                <vehicle id="F06_5" pos="49.92" speed="10.55"/>
+                <vehicle id="F06_4" pos="85.68" speed="10.58"/>
+                <vehicle id="F06_3" pos="110.50" speed="10.17"/>
+            </lane>
+        </edge>
+        <edge id="L1509">
+            <lane id="L1509_0">
+                <vehicle id="F075_4" pos="21.04" speed="10.19"/>
+                <vehicle id="F075_3" pos="51.19" speed="9.94"/>
+                <vehicle id="F075_2" pos="80.62" speed="11.06"/>
+                <vehicle id="F075_1" pos="104.22" speed="10.80"/>
+            </lane>
+        </edge>
+        <edge id="L1521">
+            <lane id="L1521_0">
+                <vehicle id="F07_3" pos="20.36" speed="10.23"/>
+                <vehicle id="F07_2" pos="48.25" speed="10.34"/>
+                <vehicle id="F07_1" pos="81.49" speed="10.44"/>
+                <vehicle id="F07_0" pos="103.72" speed="10.96"/>
+            </lane>
+        </edge>
+        <edge id="L1610">
+            <lane id="L1610_0">
+                <vehicle id="F08_2" pos="6.42" speed="7.37"/>
+            </lane>
+        </edge>
+        <edge id="L1617">
+            <lane id="L1617_0">
+                <vehicle id="F04_96" pos="51.88" speed="15.04"/>
+                <vehicle id="F04_94" pos="111.34" speed="15.45"/>
+            </lane>
+            <lane id="L1617_1">
+                <vehicle id="F04_91" pos="68.76" speed="15.53"/>
+                <vehicle id="F04_95" pos="118.33" speed="14.36"/>
+            </lane>
+        </edge>
+        <edge id="L1718">
+            <lane id="L1718_0">
+                <vehicle id="F04_99" pos="9.31" speed="15.23"/>
+                <vehicle id="F04_98" pos="70.77" speed="15.11"/>
+                <vehicle id="F04_92" pos="111.39" speed="15.15"/>
+            </lane>
+            <lane id="L1718_1">
+                <vehicle id="F04_97" pos="43.36" speed="14.96"/>
+                <vehicle id="F04_93" pos="89.83" speed="15.58"/>
+                <vehicle id="F04_90" pos="127.33" speed="14.76"/>
+            </lane>
+        </edge>
+        <edge id="L2115">
+            <lane id="L2115_0">
+                <vehicle id="F075_9" pos="74.25" speed="1.11"/>
+                <vehicle id="F075_8" pos="87.14" speed="4.14"/>
+                <vehicle id="F075_7" pos="103.57" speed="7.04"/>
+                <vehicle id="F075_6" pos="118.80" speed="4.38"/>
+            </lane>
+        </edge>
+        <edge id="L2216">
+            <lane id="L2216_0">
+                <vehicle id="F08_9" pos="78.85" speed="0.00"/>
+                <vehicle id="F08_8" pos="86.36" speed="0.00"/>
+                <vehicle id="F08_7" pos="93.87" speed="0.00"/>
+                <vehicle id="F08_6" pos="101.37" speed="0.00"/>
+                <vehicle id="F08_5" pos="109.22" speed="0.34"/>
+                <vehicle id="F08_4" pos="118.86" speed="1.91"/>
+                <vehicle id="F08_3" pos="129.72" speed="2.92"/>
+            </lane>
+        </edge>
+    </timestep>
+</sumo-netstate>
