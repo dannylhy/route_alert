@@ -30,12 +30,12 @@
 	<edge id="L0208" from="2" to="8" type="25mi"/>
 	<edge id="L0814" from="8" to="14" type="25mi"/>
 	<edge id="L1420" from="14" to="20" type="25mi"/>
-	<edge id="L0309" from="3" to="9" type="35mi"/>
-	<edge id="L0903" from="9" to="3" type="35mi"/>
-	<edge id="L0915" from="9" to="15" type="35mi"/>
-	<edge id="L1509" from="15" to="9" type="35mi"/>
-	<edge id="L1521" from="15" to="21" type="35mi"/>
-	<edge id="L2115" from="21" to="15" type="35mi"/>
+	<edge id="L0309" from="3" to="9" type="25mi"/>
+	<edge id="L0903" from="9" to="3" type="25mi"/>
+	<edge id="L0915" from="9" to="15" type="25mi"/>
+	<edge id="L1509" from="15" to="9" type="25mi"/>
+	<edge id="L1521" from="15" to="21" type="25mi"/>
+	<edge id="L2115" from="21" to="15" type="25mi"/>
 	<edge id="L1004" from="10" to="4" type="25mi"/>
 	<edge id="L1610" from="16" to="10" type="25mi"/>
 	<edge id="L2216" from="22" to="16" type="25mi"/>
