@@ -1,0 +1,3 @@
+$ns_ at 25.0 "$g(55) start"	;# SUMO-ID: rAmb_0
+$ns_ at 123.0 "$g(55) stop"	;# SUMO-ID: rAmb_0
+		<flow id="F04" from="L1314" to="L1718" vtype="CarA" number="70" departLane="random"/>
