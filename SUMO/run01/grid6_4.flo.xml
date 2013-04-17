@@ -13,8 +13,7 @@
 		<flow id="F08" from="L2216" to="L1004" vtype="CarA" number="10" departLane="random"/>
 		<flow id="F09" from="L0511" to="L1723" vtype="CarA" number="10" departLane="random"/>
 		<flow id="F10" from="L0612" to="L1824" vtype="CarA" number="10" departLane="random"/>
-		<flow id="F11" from="L2418" to="L1206" vtype="CarA" number="10" departLane="random"/>
-		<flow id="F13" from="L0612" to="L1319" vtype="CarA" number="25" departLane="random"/>
+		<flow id="F11" from="L2418" to="L1206" vtype="CarA" number="35" departLane="random"/>
 	</interval>
 </flows>
 	
