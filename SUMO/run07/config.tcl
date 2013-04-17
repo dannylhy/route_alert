@@ -1,5 +1,5 @@
 # set number of nodes
-set opt(nn) 221.0
+set opt(nn) 251.0
 
 # set activity file
 set opt(af) $opt(config-path)
