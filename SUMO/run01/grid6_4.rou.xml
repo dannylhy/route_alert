@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- generated on Wed Apr 17 17:15:07 2013 by SUMO duarouter Version 0.16.0
+<!-- generated on Wed Apr 17 17:20:19 2013 by SUMO duarouter Version 0.16.0
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/duarouterConfiguration.xsd">
@@ -60,7 +60,7 @@
     <vehicle id="F10_0" depart="0.00" departLane="best">
         <route edges="L0612 L1218 L1824"/>
     </vehicle>
-    <vehicle id="F11_0" depart="0.00" departLane="best">
+    <vehicle id="F11_0" depart="0.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_1" depart="2.00" departLane="best">
@@ -69,7 +69,7 @@
     <vehicle id="F01_1" depart="3.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_1" depart="3.00" departLane="best">
+    <vehicle id="F11_1" depart="3.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_2" depart="4.00" departLane="best">
@@ -81,7 +81,7 @@
     <vehicle id="F01_2" depart="6.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_2" depart="6.00" departLane="best">
+    <vehicle id="F11_2" depart="6.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_4" depart="8.00" departLane="best">
@@ -90,7 +90,7 @@
     <vehicle id="F01_3" depart="9.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_3" depart="9.00" departLane="best">
+    <vehicle id="F11_3" depart="9.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_5" depart="10.00" departLane="best">
@@ -129,7 +129,7 @@
     <vehicle id="F01_4" depart="11.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_4" depart="11.00" departLane="best">
+    <vehicle id="F11_4" depart="11.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_6" depart="12.00" departLane="best">
@@ -141,7 +141,7 @@
     <vehicle id="F01_5" depart="14.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_5" depart="14.00" departLane="best">
+    <vehicle id="F11_5" depart="14.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_8" depart="16.00" departLane="best">
@@ -150,7 +150,7 @@
     <vehicle id="F01_6" depart="17.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_6" depart="17.00" departLane="best">
+    <vehicle id="F11_6" depart="17.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_9" depart="18.00" departLane="best">
@@ -192,7 +192,7 @@
     <vehicle id="F10_2" depart="20.00" departLane="best">
         <route edges="L0612 L1218 L1824"/>
     </vehicle>
-    <vehicle id="F11_7" depart="20.00" departLane="best">
+    <vehicle id="F11_7" depart="20.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_11" depart="22.00" departLane="best">
@@ -201,7 +201,7 @@
     <vehicle id="F01_8" depart="23.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_8" depart="23.00" departLane="best">
+    <vehicle id="F11_8" depart="23.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_12" depart="24.00" departLane="best">
@@ -216,7 +216,7 @@
     <vehicle id="F01_9" depart="26.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_9" depart="26.00" departLane="best">
+    <vehicle id="F11_9" depart="26.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_14" depart="28.00" departLane="best">
@@ -225,7 +225,7 @@
     <vehicle id="F01_10" depart="29.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_10" depart="29.00" departLane="best">
+    <vehicle id="F11_10" depart="29.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_15" depart="30.00" departLane="best">
@@ -264,7 +264,7 @@
     <vehicle id="F01_11" depart="31.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_11" depart="31.00" departLane="best">
+    <vehicle id="F11_11" depart="31.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_16" depart="32.00" departLane="best">
@@ -276,7 +276,7 @@
     <vehicle id="F01_12" depart="34.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_12" depart="34.00" departLane="best">
+    <vehicle id="F11_12" depart="34.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_18" depart="36.00" departLane="best">
@@ -285,7 +285,7 @@
     <vehicle id="F01_13" depart="37.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_13" depart="37.00" departLane="best">
+    <vehicle id="F11_13" depart="37.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_19" depart="38.00" departLane="best">
@@ -327,7 +327,7 @@
     <vehicle id="F10_4" depart="40.00" departLane="best">
         <route edges="L0612 L1218 L1824"/>
     </vehicle>
-    <vehicle id="F11_14" depart="40.00" departLane="best">
+    <vehicle id="F11_14" depart="40.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_21" depart="42.00" departLane="best">
@@ -336,7 +336,7 @@
     <vehicle id="F01_15" depart="43.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_15" depart="43.00" departLane="best">
+    <vehicle id="F11_15" depart="43.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_22" depart="44.00" departLane="best">
@@ -348,7 +348,7 @@
     <vehicle id="F01_16" depart="46.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_16" depart="46.00" departLane="best">
+    <vehicle id="F11_16" depart="46.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_24" depart="48.00" departLane="best">
@@ -357,7 +357,7 @@
     <vehicle id="F01_17" depart="49.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_17" depart="49.00" departLane="best">
+    <vehicle id="F11_17" depart="49.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_25" depart="50.00" departLane="best">
@@ -396,7 +396,7 @@
     <vehicle id="F01_18" depart="51.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_18" depart="51.00" departLane="best">
+    <vehicle id="F11_18" depart="51.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_26" depart="52.00" departLane="best">
@@ -408,7 +408,7 @@
     <vehicle id="F01_19" depart="54.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_19" depart="54.00" departLane="best">
+    <vehicle id="F11_19" depart="54.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_28" depart="56.00" departLane="best">
@@ -417,7 +417,7 @@
     <vehicle id="F01_20" depart="57.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_20" depart="57.00" departLane="best">
+    <vehicle id="F11_20" depart="57.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_29" depart="58.00" departLane="best">
@@ -459,7 +459,7 @@
     <vehicle id="F10_6" depart="60.00" departLane="best">
         <route edges="L0612 L1218 L1824"/>
     </vehicle>
-    <vehicle id="F11_21" depart="60.00" departLane="best">
+    <vehicle id="F11_21" depart="60.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_31" depart="62.00" departLane="best">
@@ -468,7 +468,7 @@
     <vehicle id="F01_22" depart="63.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_22" depart="63.00" departLane="best">
+    <vehicle id="F11_22" depart="63.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_32" depart="64.00" departLane="best">
@@ -480,7 +480,7 @@
     <vehicle id="F01_23" depart="66.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_23" depart="66.00" departLane="best">
+    <vehicle id="F11_23" depart="66.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_34" depart="68.00" departLane="best">
@@ -489,7 +489,7 @@
     <vehicle id="F01_24" depart="69.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_24" depart="69.00" departLane="best">
+    <vehicle id="F11_24" depart="69.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_35" depart="70.00" departLane="best">
@@ -528,7 +528,7 @@
     <vehicle id="F01_25" depart="71.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_25" depart="71.00" departLane="best">
+    <vehicle id="F11_25" depart="71.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_36" depart="72.00" departLane="best">
@@ -540,7 +540,7 @@
     <vehicle id="F01_26" depart="74.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_26" depart="74.00" departLane="best">
+    <vehicle id="F11_26" depart="74.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_38" depart="76.00" departLane="best">
@@ -549,7 +549,7 @@
     <vehicle id="F01_27" depart="77.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_27" depart="77.00" departLane="best">
+    <vehicle id="F11_27" depart="77.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_39" depart="78.00" departLane="best">
@@ -591,7 +591,7 @@
     <vehicle id="F10_8" depart="80.00" departLane="best">
         <route edges="L0612 L1218 L1824"/>
     </vehicle>
-    <vehicle id="F11_28" depart="80.00" departLane="best">
+    <vehicle id="F11_28" depart="80.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_41" depart="82.00" departLane="best">
@@ -600,7 +600,7 @@
     <vehicle id="F01_29" depart="83.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_29" depart="83.00" departLane="best">
+    <vehicle id="F11_29" depart="83.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_42" depart="84.00" departLane="best">
@@ -612,7 +612,7 @@
     <vehicle id="F01_30" depart="86.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_30" depart="86.00" departLane="best">
+    <vehicle id="F11_30" depart="86.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_44" depart="88.00" departLane="best">
@@ -621,7 +621,7 @@
     <vehicle id="F01_31" depart="89.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_31" depart="89.00" departLane="best">
+    <vehicle id="F11_31" depart="89.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_45" depart="90.00" departLane="best">
@@ -660,7 +660,7 @@
     <vehicle id="F01_32" depart="91.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_32" depart="91.00" departLane="best">
+    <vehicle id="F11_32" depart="91.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_46" depart="92.00" departLane="best">
@@ -672,7 +672,7 @@
     <vehicle id="F01_33" depart="94.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_33" depart="94.00" departLane="best">
+    <vehicle id="F11_33" depart="94.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_48" depart="96.00" departLane="best">
@@ -681,7 +681,7 @@
     <vehicle id="F01_34" depart="97.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
-    <vehicle id="F11_34" depart="97.00" departLane="best">
+    <vehicle id="F11_34" depart="97.00" departLane="0">
         <route edges="L2418 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_49" depart="98.00" departLane="best">
