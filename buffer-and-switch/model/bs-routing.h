@@ -64,6 +64,28 @@ namespace ns3{
 			bool OnThePath (std::string currentRoad, std::string path);
 			void SendAlertPacket ();
 			std::string GetNextRoad (std::string path);
+
+			int GetAngle (double x, double y)
+			{
+				if (x == 0 && y == 0)
+				{
+					return 0;
+				}
+				double result = atan2 (y,x) * 180 / (3.14159265);
+				if (result >= -45 && result <= 45)
+				{
+					return 1;
+				}else if (result <= -45 && result >= -135)
+				{
+					return 2;
+				}else if (result >= 45 && result <= 135)
+				{
+					return 4;
+				}else {
+					return 3;
+				}
+
+			}
 			std::string GetPreviousIntersection (std::string currentRoad)
 			{
 				return currentRoad.substr (1, 2);

@@ -148,6 +148,7 @@ namespace ns3{
 		{
 			start.WriteU8 (m_currentRoad [i]);
 		}
+
 	}
 
 	uint32_t BSHeader::Deserialize (Buffer::Iterator start)
@@ -162,6 +163,8 @@ namespace ns3{
 			m_currentRoad.push_back ((char)i.ReadU8 ());
 			size--;
 		}
+
+
 		uint32_t dist = i.GetDistanceFrom (start);
 		NS_ASSERT (dist == GetSerializedSize ());
 		return dist;

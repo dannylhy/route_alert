@@ -55,7 +55,7 @@ namespace ns3{
 		
 		static TypeId GetTypeId();
 		void UpdateRoute (Ipv4Address addr, uint64_t posx, uint64_t posy, std::string currentRoad, uint32_t id);
-		Ipv4Address LookupRoute (std::string currentRoad, uint64_t myCurrentPosx, uint64_t myCurrentPosy, uint32_t id);
+		Ipv4Address LookupRoute (std::string currentRoad, uint64_t myCurrentPosx, uint64_t myCurrentPosy, uint32_t id, int direction);
 		void UpdateMyCurrentPos (uint64_t posx, uint64_t posy);
 
 		void SetMyCurrentPosx (uint64_t posx)

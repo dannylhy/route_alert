@@ -26,7 +26,7 @@
 #include <vector>
 #include <boost/lexical_cast.hpp>
 
-#define EXPIRETIME 5
+#define EXPIRETIME 1
 
 using namespace std;
 
@@ -76,70 +76,142 @@ namespace ns3{
 
 		return true;
 	}*/
-
         void BufferAndSwitchRoutingTable::UpdateRoute (Ipv4Address addr, uint64_t posx, uint64_t posy, std::string currentRoad, uint32_t id)
 	{
+		int find = 0;
+		double nowSeconds = ns3::Simulator::Now().GetSeconds (); 
 		for (std::vector<BSRoutingTableEntry>::iterator it = m_bsTable.begin (); it != m_bsTable.end (); it++)
 		{
-			//delete legancy entry
-			
-			if ( (ns3::Simulator::Now().GetSeconds () - it->timeStamp.GetSeconds ()) > m_entryExpireTime )
-			{
-				m_bsTable.erase (it);
-				NS_LOG_WARN ("delete legancy entry");
-				return;
-			}
-				
 			//if find, update routing table
-			if ((it->addr).IsEqual (addr))
+			if ( (it->addr).IsEqual (addr) && (it->id == id) )
 			{
 				it->posx = posx;
 				it->posy = posy;
 				it->currentRoad = currentRoad;
-				it->timeStamp = ns3::Simulator::Now();
+				it->timeStamp = ns3::Simulator::Now ();
 				it->id = id;
-				NS_LOG_WARN ("update existing entry, ip = " << addr << " currentRoad = " << currentRoad << " time = " << ns3::Simulator::Now().GetSeconds ());
-				return;
+				//NS_LOG_WARN ("update existing entry, ip = " << addr << " currentRoad = " << currentRoad << " id = "<< id <<" time = " << ns3::Simulator::Now().GetSeconds ());
+				find = 1;
+			}
+			//delete legancy entry
+			
+			if ( nowSeconds - it->timeStamp.GetSeconds () > m_entryExpireTime )
+			{
+				m_bsTable.erase (it);
+				//NS_LOG_WARN ("delete legancy entry");
 			}
 		}
-		
-		//if not find, then add
-		BSRoutingTableEntry bsrEntry;
-		bsrEntry.addr = addr;
-		bsrEntry.posx = posx;
-		bsrEntry.posy = posy;
-		bsrEntry.currentRoad = currentRoad;
-		bsrEntry.timeStamp = ns3::Simulator::Now();
-		bsrEntry.id = id;
-		
-		m_bsTable.push_back (bsrEntry);
-		NS_LOG_WARN ("insert new entry, ip = " << addr << " currentRoad = " << currentRoad << " time = " << ns3::Simulator::Now().GetSeconds ());
+
+		if (find == 0)
+		{
+			//if not find, then add
+			BSRoutingTableEntry bsrEntry;
+			bsrEntry.addr = addr;
+			bsrEntry.posx = posx;
+			bsrEntry.posy = posy;
+			bsrEntry.currentRoad = currentRoad;
+			bsrEntry.timeStamp = ns3::Simulator::Now();
+			bsrEntry.id = id;
+
+			m_bsTable.push_back (bsrEntry);
+			//NS_LOG_WARN ("insert new entry, ip = " << addr << " currentRoad = " << currentRoad << " id = " << id << " time = " << ns3::Simulator::Now().GetSeconds ());
+		}
+
+
 	}
        
-	Ipv4Address BufferAndSwitchRoutingTable::LookupRoute (std::string currentRoad, uint64_t myCurrentPosx, uint64_t myCurrentPosy,uint32_t id)
+	Ipv4Address BufferAndSwitchRoutingTable::LookupRoute (std::string currentRoad, uint64_t myCurrentPosx, uint64_t myCurrentPosy,uint32_t id, int direction)
 	{
 		Ipv4Address addr("0.0.0.0");
 
 		double minDistance = std::numeric_limits<double>::max();
-		int num = 0;
+		/*for (uint32_t i = 0; i < m_bsTable.size (); i++)
+		{
+			NS_LOG_WARN ("\taddr = " << m_bsTable [i].addr << "\tposx = " << m_bsTable [i].posx << "\tposy = " << m_bsTable [i].posy <<"\tid = " << m_bsTable [i].id << "\tcurrentRoad = " << m_bsTable [i].currentRoad);
+		}
+		NS_LOG_WARN ("-----------------------------------------------------------");
+		//int num = 0;
 		for (uint32_t i = 0; i < m_bsTable.size (); i++)
 		{
 			if (m_bsTable[i].id == id)
 			{
 				num++;
 			}
-		}
-		std::cout << "LookupRoute : routing table has " << num << " entries" << std::endl; 
+		}*/
+		//std::cout << "LookupRoute : routing table has " << num << " entries" << std::endl; 
 		for (uint32_t i = 0; i < m_bsTable.size (); i++)
 		{
 			
-			if ( (m_bsTable[i].id == id) && (m_bsTable[i].currentRoad.compare (currentRoad)) )
+			if ( (m_bsTable[i].id == id) && ( 0 == m_bsTable[i].currentRoad.compare (currentRoad)) )
 			{
-				double dist = GetDistance (myCurrentPosx, m_bsTable [i].posx, myCurrentPosy, m_bsTable [i].posy);
-				if (dist < minDistance)
+				//NS_LOG_WARN ("direction = " << direction);
+				switch (direction)
 				{
-					minDistance = dist;
-					addr = m_bsTable [i] .addr;
+					case -1://lookup routing on next road
+					{
+							double dist = GetDistance (myCurrentPosx, m_bsTable [i].posx, myCurrentPosy, m_bsTable [i].posy);
+							if (dist < minDistance)
+							{
+								minDistance = dist;
+								addr = m_bsTable [i] .addr;
+							}
+						break;
+					}
+					case 1:
+					{
+						if (myCurrentPosx < m_bsTable [i].posx)
+						{
+							double dist = GetDistance (myCurrentPosx, m_bsTable [i].posx, myCurrentPosy, m_bsTable [i].posy);
+							if (dist < minDistance)
+							{
+								minDistance = dist;
+								addr = m_bsTable [i] .addr;
+							}
+						}
+						break;
+					}
+					case 2:
+					{
+						if (myCurrentPosy > m_bsTable [i].posy)
+						{
+							double dist = GetDistance (myCurrentPosx, m_bsTable [i].posx, myCurrentPosy, m_bsTable [i].posy);
+							if (dist < minDistance)
+							{
+								minDistance = dist;
+								addr = m_bsTable [i] .addr;
+							}
+						}
+						break;
+					}
+					case 3:
+					{
+						if (myCurrentPosx > m_bsTable [i].posx)
+						{
+							double dist = GetDistance (myCurrentPosx, m_bsTable [i].posx, myCurrentPosy, m_bsTable [i].posy);
+							if (dist < minDistance)
+							{
+								minDistance = dist;
+								addr = m_bsTable [i] .addr;
+							}
+						}
+						break;
+					}
+					case 4:
+					{
+						if (myCurrentPosy < m_bsTable [i].posy)
+						{
+							double dist = GetDistance (myCurrentPosx, m_bsTable [i].posx, myCurrentPosy, m_bsTable [i].posy);
+							if (dist < minDistance)
+							{
+								minDistance = dist;
+								addr = m_bsTable [i] .addr;
+							}
+						}
+						break;
+					}
+					default:
+					{
+					}
 				}
 			}
 			

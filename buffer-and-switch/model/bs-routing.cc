@@ -29,14 +29,17 @@
 #include "ns3/udp-socket-factory.h"
 #include "ns3/uinteger.h"
 #include "ns3/random-variable.h"
+#include "ns3/random-variable-stream.h"
 #include "bs-routing.h"
 #include "bs-routing-table.h"
 #include "location.h"
 #include <iostream>
 #include <fstream>
 
-#define AMBID 156
 std::string ambPath = "L191314151617181206"; //Should get from map info;
+ns3::Ipv4Address destination = ns3::Ipv4Address ("10.1.1.222");
+ns3::Ipv4Address ambIP = ns3::Ipv4Address ("10.1.1.157");
+
 
 NS_LOG_COMPONENT_DEFINE ("BSRouting");
 
@@ -69,6 +72,7 @@ namespace ns3{
 		m_helloIntervalTimer = Timer::CANCEL_ON_DESTROY;
 		m_helloInterval = Seconds (1);
 		m_alertSent = 0;	
+		//m_rtable = PointerValue (CreateObject<BufferAndSwitchRoutingTable> ());
 	}
 		
 	BufferAndSwitchRouting::~BufferAndSwitchRouting ()
@@ -89,7 +93,7 @@ namespace ns3{
 		Ipv4Address dst = m_iface.GetBroadcast ();
 		SendPkt (dst, MSG_HELLO);
 		//If it is an activated amb, send alert pkt periodically
-		if ( (GetNodeId () == 157) && (m_alertSent != 0) )
+		if ( (GetNodeId () == 156) && (m_alertSent != 0) )
 		{
 			SendAlertPacket ();
 		}else if (-1 == m_alertSent)
@@ -104,11 +108,10 @@ namespace ns3{
 			{
 				m_currentRoad = tmp;
 			}
-			if(OnThePath (m_currentRoad.substr(1), ambPath))
-			{
-				SendAlertPacket ();
-			}
+			
+			SendAlertPacket ();
 		}
+		//std::cout << "ID's " << GetNodeId() << " HelloTimer expired at " << ns3::Simulator::Now().GetSeconds() << " Delay Left: " << m_helloIntervalTimer.GetDelayLeft().GetMilliSeconds() << endl;
 		m_helloIntervalTimer.Cancel ();
 		m_helloIntervalTimer.Schedule (m_helloInterval);
 	}
@@ -150,7 +153,7 @@ namespace ns3{
 		{
 			return ("L" + path.substr (index, 4));
 		}else{
-			return "";
+			return "last";
 		}
 	}
 
@@ -168,32 +171,44 @@ namespace ns3{
 	{	
 		if (!OnThePath (m_currentRoad.substr(1), ambPath))
 		{
+			m_alertSent = 1;
 			return;
 		}
 		NS_LOG_WARN (m_address << " SendAlertPacket()");
 		std::string nextRoad = GetNextRoad (ambPath);
+		//NS_LOG_WARN ( "Got next road " << nextRoad);
 		if (nextRoad.length () == 0)
 		{
 			return;
 		}
-		double posx, posy;
+		double posx, posy, velocityx, velocityy;
 		Ptr<MobilityModel> MM = m_ipv4->GetObject<MobilityModel> ();	
 		posx = MM->GetPosition ().x;
 	        posy = MM->GetPosition ().y;	
-		Ipv4Address dst = m_rtable->LookupRoute (nextRoad, (uint64_t)posx, (uint64_t)posy, GetNodeId ());
+		velocityx = MM->GetVelocity ().x;
+		velocityy = MM->GetVelocity ().y;
+		
+		Ipv4Address dst = m_rtable->LookupRoute (m_currentRoad, (uint64_t)posx, (uint64_t)posy, GetNodeId (), GetAngle (velocityx, velocityy));
 		if (!dst.IsEqual (Ipv4Address ("0.0.0.0")))
 		{
-			NS_LOG_WARN (m_address << " is on " << m_currentRoad << " forward alert pkt to nextroad " << nextRoad << " dst ip = " << dst << " time = " << ns3::Simulator::Now().GetSeconds ());
+			NS_LOG_WARN (m_address << " is on " << m_currentRoad << " forward alert pkt on current road dst ip = " << dst << " time = " << ns3::Simulator::Now().GetSeconds ());
 			SendPkt (dst, MSG_ALERT);
 			m_alertSent = 1;
-		}else{
-			Ipv4Address dst = m_rtable->LookupRoute (m_currentRoad, (uint64_t)posx, (uint64_t)posy, GetNodeId ());
+		}
+		else if (0 == nextRoad.compare ("last"))
+		{
+			NS_LOG_WARN (m_address << " hold the alert pkt on road " << m_currentRoad << " time = " << ns3::Simulator::Now().GetSeconds ());
+			m_alertSent = -1;
+		} 
+		else
+		{
+			Ipv4Address dst = m_rtable->LookupRoute (nextRoad, (uint64_t)posx, (uint64_t)posy, GetNodeId (), -1);
 			if (dst.IsEqual (Ipv4Address ("0.0.0.0")))
 			{
-				NS_LOG_WARN (m_address << " hold the alert pkt" << " time = " << ns3::Simulator::Now().GetSeconds ());
+				NS_LOG_WARN (m_address << " hold the alert pkt on road " << m_currentRoad << " time = " << ns3::Simulator::Now().GetSeconds ());
 				m_alertSent = -1;
 			}else{
-				NS_LOG_WARN (m_address << " forward alert pkt on current road " << m_currentRoad << " time = " << ns3::Simulator::Now().GetSeconds ());
+				NS_LOG_WARN (m_address << " is on " << m_currentRoad << " forward alert pkt to nextroad " << nextRoad << " dst ip = " << dst << " time = " << ns3::Simulator::Now().GetSeconds ());
 				SendPkt (dst, MSG_ALERT);
 				m_alertSent = 1;
 			}
@@ -205,7 +220,7 @@ namespace ns3{
 		
 		//NS_LOG_WARN (socket);
 		std::string tmp = GetRoad (GetNodeId ());
-		NS_LOG_WARN (m_address << " BSRecv : GetRoad = " << tmp << " ID = " << GetNodeId () << " time = " << ns3::Simulator::Now().GetSeconds());
+		//NS_LOG_WARN (m_address << " BSRecv : GetRoad = " << tmp << " ID = " << GetNodeId () << " time = " << ns3::Simulator::Now().GetSeconds());
 		if (tmp.length () == 0)
 		{
 			return;
@@ -224,12 +239,12 @@ namespace ns3{
 		{
 			case MSG_HELLO:
 			{
-				NS_LOG_WARN (m_address << " receive a hello pkt");
+				//NS_LOG_WARN (m_address << " receive a hello pkt");
 				BSHeader bHeader;
 				packet->RemoveHeader (bHeader);
 				if (!src.IsEqual (m_address))
 				{
-					NS_LOG_WARN (m_address << " update route entry");
+					//NS_LOG_WARN (m_address << "id = " << GetNodeId () << " update route entry ");
 					m_rtable->UpdateRoute (src, bHeader.GetPosx (), bHeader.GetPosy (), bHeader.GetCurrentRoad (), GetNodeId ());
 				}
 				break;
@@ -250,7 +265,7 @@ namespace ns3{
 					return;
 				}
 				
-				//NS_LOG_WARN ("receive an alert pkt");
+				NS_LOG_WARN (m_address <<" receive an alert pkt on road " << m_currentRoad);
 				Ipv4Address dst;
 				Ptr<Packet> tmpPacket = packet->Copy ();
 				BSHeader bHeader;
@@ -304,6 +319,7 @@ namespace ns3{
 					
 	
 					socket->SendTo (packet, 0, InetSocketAddress (dst, BS_PORT));	
+					//NS_LOG_WARN ("ret of send alert = " << ret);
 				}
 				break;
 			}	
@@ -320,7 +336,7 @@ namespace ns3{
 				{
 					m_currentRoad = tmp;
 				}
-				NS_LOG_WARN (m_address << " sends hello pkt, current road = " << m_currentRoad << " time = " << ns3::Simulator::Now ().GetSeconds ());
+				//NS_LOG_WARN (m_address << " sends hello pkt, current road = " << m_currentRoad << " time = " << ns3::Simulator::Now ().GetSeconds ());
 				for (std::map< Ptr<Socket>, Ipv4InterfaceAddress >::const_iterator j = m_socketAddresses.begin ();
 		     		j != m_socketAddresses.end (); j++)
 				{
@@ -375,7 +391,17 @@ namespace ns3{
                 NS_LOG_WARN (ipv4);
 		m_ipv4 = ipv4;
 		m_helloIntervalTimer.SetFunction (&BufferAndSwitchRouting::HelloTimerExpire, this);
-		m_helloIntervalTimer.Schedule (FIRST_JITTER);
+
+		double minRand = 1;
+		double maxRand = 999;
+		Ptr<UniformRandomVariable> randStartTime= CreateObject<UniformRandomVariable>();
+		randStartTime->SetAttribute("Min", DoubleValue(minRand));
+		randStartTime->SetAttribute("Max", DoubleValue(maxRand));
+		Time start_time = Seconds(1.0 + (randStartTime->GetValue()/1000.0));
+		//m_helloIntervalTimer.Schedule (FIRST_JITTER);
+		m_helloIntervalTimer.Schedule (start_time);
+
+		//std::cout << "final Delay: " << m_helloIntervalTimer.GetDelayLeft().GetMilliSeconds() << endl;
 	}
 
 	void BufferAndSwitchRouting::NotifyInterfaceUp (uint32_t interface)
@@ -463,18 +489,20 @@ namespace ns3{
 	
 		}else if (tHeader.GetType () == MSG_ALERT)
 		{
-			//NS_LOG_WARN ("Output: route an alert pkt");
-			GetNodeId ();
+			//NS_LOG_WARN ("RouteOutput: route an alert pkt");
 			Ptr<Ipv4Route> route = Create<Ipv4Route> ();
   			route->SetGateway (header.GetDestination ());
+			//NS_LOG_WARN ("RouteOutput: set next hop = " << header.GetDestination ());
   			route->SetSource (m_address);
+			//NS_LOG_WARN ("RouteOutput: set source = " << m_address);
   			route->SetDestination (header.GetDestination ());
+			//NS_LOG_WARN ("RouteOutput: set destination = " << header.GetDestination ());
   			route->SetOutputDevice (m_ipv4->GetNetDevice (m_ifaceId));
 
   			sockerr = Socket::ERROR_NOTERROR;
 
   			return route;
-		}else if (m_address.IsEqual ("10.1.1.157")){
+		}else if (GetNodeId () == 156){
 			//Trigger the Alert Packet
 			
 			NS_LOG_WARN ("Emergency Vehicle starts: sending an ALERT pkt");

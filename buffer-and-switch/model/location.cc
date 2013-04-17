@@ -4,7 +4,7 @@ namespace ns3{
   namespace bs{
     string GetRoad(uint32_t in_id) {
       Time now_time = ns3::Simulator::Now();
-      double in_time = (double) (((int) ((now_time.GetMilliSeconds() / 100)+0.5)) / 10.0f);
+      int in_time = (int) (((int) ((now_time.GetMilliSeconds() / 100)+0.5)) / 10.0f);
       if (in_id == 221)
 	return "L1206";
       if (in_time == 0.0) {
