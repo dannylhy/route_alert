@@ -25,6 +25,7 @@
 #include "ns3/header.h"
 #include "ns3/enum.h"
 #include "ns3/ipv4-address.h"
+#include "ns3/vector.h"
 #include <map>
 #include "ns3/nstime.h"
 
@@ -113,7 +114,7 @@ namespace ns3{
                         std::string m_currentRoad; //if it is a HelloPacket, m_currentRoad is current road
 							 //if it is a AlertPacket, m_currentRoad is current path to destination
 			uint64_t m_posx; //X coordinate
-			uint64_t m_posy; //Y coordinate
+			uint64_t m_posy; //Y coordinate	
         };
  }
 }
