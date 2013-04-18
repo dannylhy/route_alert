@@ -1,17 +1,21 @@
 <?xml version="1.0"?>
 
+<<<<<<< HEAD
 <!-- generated on Wed Apr 17 18:02:07 2013 by SUMO sumo Version 0.16.0
+=======
+<!-- generated on 4/17/2013 2:50:17 PM by SUMO gui Version 0.16.0
+>>>>>>> 5a3a387a54569652c6e75ca2d73e6fcd20cd517c
 <?xml version="1.0" encoding="UTF-8"?>
 
-<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/sumoConfiguration.xsd">
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/sumo-gui.exeConfiguration.xsd">
 
     <input>
-        <net-file value="../grid6_4.net.xml"/>
-        <route-files value="grid6_4.rou.xml"/>
+        <net-file value="C:\Users\Michael\Documents\GitHub\route_alert\SUMO\run10\../grid6_4.net.xml"/>
+        <route-files value="C:\Users\Michael\Documents\GitHub\route_alert\SUMO\run10\grid6_4.rou.xml"/>
     </input>
 
     <output>
-        <netstate-dump value="netstate6_4.xml"/>
+        <netstate-dump value="C:\Users\Michael\Documents\GitHub\route_alert\SUMO\run10\netstate6_4.xml"/>
     </output>
 
     <time>
