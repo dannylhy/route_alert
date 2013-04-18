@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- generated on Wed Apr 17 22:15:26 2013 by SUMO duarouter Version 0.16.0
+<!-- generated on Wed Apr 17 22:21:00 2013 by SUMO duarouter Version 0.16.0
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/duarouterConfiguration.xsd">
@@ -74,9 +74,19 @@
             <route cost="37.11" probability="1.00000000" edges="L2115 L1509 L0903"/>
         </routeDistribution>
     </vehicle>
+    <vehicle id="F0775_0" depart="0.00" departLane="best">
+        <routeDistribution last="0">
+            <route cost="42.12" probability="1.00000000" edges="L2115 L1516 L1617 L1723"/>
+        </routeDistribution>
+    </vehicle>
     <vehicle id="F07_0" depart="0.00" departLane="best">
         <routeDistribution last="0">
             <route cost="37.11" probability="1.00000000" edges="L0309 L0915 L1521"/>
+        </routeDistribution>
+    </vehicle>
+    <vehicle id="F085_0" depart="0.00" departLane="best">
+        <routeDistribution last="0">
+            <route cost="32.93" probability="1.00000000" edges="L2216 L1617 L1723"/>
         </routeDistribution>
     </vehicle>
     <vehicle id="F08_0" depart="0.00" departLane="best">
@@ -189,19 +199,9 @@
             <route cost="37.11" probability="1.00000000" edges="L0208 L0814 L1420"/>
         </routeDistribution>
     </vehicle>
-    <vehicle id="F075_1" depart="15.00" departLane="best">
-        <routeDistribution last="0">
-            <route cost="37.11" probability="1.00000000" edges="L2115 L1509 L0903"/>
-        </routeDistribution>
-    </vehicle>
     <vehicle id="F07_1" depart="15.00" departLane="best">
         <routeDistribution last="0">
             <route cost="37.11" probability="1.00000000" edges="L0309 L0915 L1521"/>
-        </routeDistribution>
-    </vehicle>
-    <vehicle id="F08_1" depart="15.00" departLane="best">
-        <routeDistribution last="0">
-            <route cost="37.11" probability="1.00000000" edges="L2216 L1610 L1004"/>
         </routeDistribution>
     </vehicle>
     <vehicle id="F09_1" depart="15.00" departLane="best">
@@ -324,9 +324,14 @@
             <route cost="37.11" probability="1.00000000" edges="L0208 L0814 L1420"/>
         </routeDistribution>
     </vehicle>
-    <vehicle id="F075_2" depart="30.00" departLane="best">
+    <vehicle id="F075_1" depart="30.00" departLane="best">
         <routeDistribution last="0">
             <route cost="37.11" probability="1.00000000" edges="L2115 L1509 L0903"/>
+        </routeDistribution>
+    </vehicle>
+    <vehicle id="F0775_1" depart="30.00" departLane="best">
+        <routeDistribution last="0">
+            <route cost="42.12" probability="1.00000000" edges="L2115 L1516 L1617 L1723"/>
         </routeDistribution>
     </vehicle>
     <vehicle id="F07_2" depart="30.00" departLane="best">
@@ -334,7 +339,12 @@
             <route cost="37.11" probability="1.00000000" edges="L0309 L0915 L1521"/>
         </routeDistribution>
     </vehicle>
-    <vehicle id="F08_2" depart="30.00" departLane="best">
+    <vehicle id="F085_1" depart="30.00" departLane="best">
+        <routeDistribution last="0">
+            <route cost="32.93" probability="1.00000000" edges="L2216 L1617 L1723"/>
+        </routeDistribution>
+    </vehicle>
+    <vehicle id="F08_1" depart="30.00" departLane="best">
         <routeDistribution last="0">
             <route cost="37.11" probability="1.00000000" edges="L2216 L1610 L1004"/>
         </routeDistribution>
@@ -444,19 +454,9 @@
             <route cost="37.11" probability="1.00000000" edges="L0208 L0814 L1420"/>
         </routeDistribution>
     </vehicle>
-    <vehicle id="F075_3" depart="45.00" departLane="best">
-        <routeDistribution last="0">
-            <route cost="37.11" probability="1.00000000" edges="L2115 L1509 L0903"/>
-        </routeDistribution>
-    </vehicle>
     <vehicle id="F07_3" depart="45.00" departLane="best">
         <routeDistribution last="0">
             <route cost="37.11" probability="1.00000000" edges="L0309 L0915 L1521"/>
-        </routeDistribution>
-    </vehicle>
-    <vehicle id="F08_3" depart="45.00" departLane="best">
-        <routeDistribution last="0">
-            <route cost="37.11" probability="1.00000000" edges="L2216 L1610 L1004"/>
         </routeDistribution>
     </vehicle>
     <vehicle id="F09_3" depart="45.00" departLane="best">
@@ -574,9 +574,14 @@
             <route cost="37.11" probability="1.00000000" edges="L0208 L0814 L1420"/>
         </routeDistribution>
     </vehicle>
-    <vehicle id="F075_4" depart="60.00" departLane="best">
+    <vehicle id="F075_2" depart="60.00" departLane="best">
         <routeDistribution last="0">
             <route cost="37.11" probability="1.00000000" edges="L2115 L1509 L0903"/>
+        </routeDistribution>
+    </vehicle>
+    <vehicle id="F0775_2" depart="60.00" departLane="best">
+        <routeDistribution last="0">
+            <route cost="42.12" probability="1.00000000" edges="L2115 L1516 L1617 L1723"/>
         </routeDistribution>
     </vehicle>
     <vehicle id="F07_4" depart="60.00" departLane="best">
@@ -584,7 +589,12 @@
             <route cost="37.11" probability="1.00000000" edges="L0309 L0915 L1521"/>
         </routeDistribution>
     </vehicle>
-    <vehicle id="F08_4" depart="60.00" departLane="best">
+    <vehicle id="F085_2" depart="60.00" departLane="best">
+        <routeDistribution last="0">
+            <route cost="32.93" probability="1.00000000" edges="L2216 L1617 L1723"/>
+        </routeDistribution>
+    </vehicle>
+    <vehicle id="F08_2" depart="60.00" departLane="best">
         <routeDistribution last="0">
             <route cost="37.11" probability="1.00000000" edges="L2216 L1610 L1004"/>
         </routeDistribution>
@@ -694,19 +704,9 @@
             <route cost="37.11" probability="1.00000000" edges="L0208 L0814 L1420"/>
         </routeDistribution>
     </vehicle>
-    <vehicle id="F075_5" depart="75.00" departLane="best">
-        <routeDistribution last="0">
-            <route cost="37.11" probability="1.00000000" edges="L2115 L1509 L0903"/>
-        </routeDistribution>
-    </vehicle>
     <vehicle id="F07_5" depart="75.00" departLane="best">
         <routeDistribution last="0">
             <route cost="37.11" probability="1.00000000" edges="L0309 L0915 L1521"/>
-        </routeDistribution>
-    </vehicle>
-    <vehicle id="F08_5" depart="75.00" departLane="best">
-        <routeDistribution last="0">
-            <route cost="37.11" probability="1.00000000" edges="L2216 L1610 L1004"/>
         </routeDistribution>
     </vehicle>
     <vehicle id="F09_5" depart="75.00" departLane="best">
@@ -824,9 +824,14 @@
             <route cost="37.11" probability="1.00000000" edges="L0208 L0814 L1420"/>
         </routeDistribution>
     </vehicle>
-    <vehicle id="F075_6" depart="90.00" departLane="best">
+    <vehicle id="F075_3" depart="90.00" departLane="best">
         <routeDistribution last="0">
             <route cost="37.11" probability="1.00000000" edges="L2115 L1509 L0903"/>
+        </routeDistribution>
+    </vehicle>
+    <vehicle id="F0775_3" depart="90.00" departLane="best">
+        <routeDistribution last="0">
+            <route cost="42.12" probability="1.00000000" edges="L2115 L1516 L1617 L1723"/>
         </routeDistribution>
     </vehicle>
     <vehicle id="F07_6" depart="90.00" departLane="best">
@@ -834,7 +839,12 @@
             <route cost="37.11" probability="1.00000000" edges="L0309 L0915 L1521"/>
         </routeDistribution>
     </vehicle>
-    <vehicle id="F08_6" depart="90.00" departLane="best">
+    <vehicle id="F085_3" depart="90.00" departLane="best">
+        <routeDistribution last="0">
+            <route cost="32.93" probability="1.00000000" edges="L2216 L1617 L1723"/>
+        </routeDistribution>
+    </vehicle>
+    <vehicle id="F08_3" depart="90.00" departLane="best">
         <routeDistribution last="0">
             <route cost="37.11" probability="1.00000000" edges="L2216 L1610 L1004"/>
         </routeDistribution>
@@ -944,19 +954,9 @@
             <route cost="37.11" probability="1.00000000" edges="L0208 L0814 L1420"/>
         </routeDistribution>
     </vehicle>
-    <vehicle id="F075_7" depart="105.00" departLane="best">
-        <routeDistribution last="0">
-            <route cost="37.11" probability="1.00000000" edges="L2115 L1509 L0903"/>
-        </routeDistribution>
-    </vehicle>
     <vehicle id="F07_7" depart="105.00" departLane="best">
         <routeDistribution last="0">
             <route cost="37.11" probability="1.00000000" edges="L0309 L0915 L1521"/>
-        </routeDistribution>
-    </vehicle>
-    <vehicle id="F08_7" depart="105.00" departLane="best">
-        <routeDistribution last="0">
-            <route cost="37.11" probability="1.00000000" edges="L2216 L1610 L1004"/>
         </routeDistribution>
     </vehicle>
     <vehicle id="F09_7" depart="105.00" departLane="best">
@@ -1074,9 +1074,14 @@
             <route cost="37.11" probability="1.00000000" edges="L0208 L0814 L1420"/>
         </routeDistribution>
     </vehicle>
-    <vehicle id="F075_8" depart="120.00" departLane="best">
+    <vehicle id="F075_4" depart="120.00" departLane="best">
         <routeDistribution last="0">
             <route cost="37.11" probability="1.00000000" edges="L2115 L1509 L0903"/>
+        </routeDistribution>
+    </vehicle>
+    <vehicle id="F0775_4" depart="120.00" departLane="best">
+        <routeDistribution last="0">
+            <route cost="42.12" probability="1.00000000" edges="L2115 L1516 L1617 L1723"/>
         </routeDistribution>
     </vehicle>
     <vehicle id="F07_8" depart="120.00" departLane="best">
@@ -1084,7 +1089,12 @@
             <route cost="37.11" probability="1.00000000" edges="L0309 L0915 L1521"/>
         </routeDistribution>
     </vehicle>
-    <vehicle id="F08_8" depart="120.00" departLane="best">
+    <vehicle id="F085_4" depart="120.00" departLane="best">
+        <routeDistribution last="0">
+            <route cost="32.93" probability="1.00000000" edges="L2216 L1617 L1723"/>
+        </routeDistribution>
+    </vehicle>
+    <vehicle id="F08_4" depart="120.00" departLane="best">
         <routeDistribution last="0">
             <route cost="37.11" probability="1.00000000" edges="L2216 L1610 L1004"/>
         </routeDistribution>
@@ -1194,19 +1204,9 @@
             <route cost="37.11" probability="1.00000000" edges="L0208 L0814 L1420"/>
         </routeDistribution>
     </vehicle>
-    <vehicle id="F075_9" depart="135.00" departLane="best">
-        <routeDistribution last="0">
-            <route cost="37.11" probability="1.00000000" edges="L2115 L1509 L0903"/>
-        </routeDistribution>
-    </vehicle>
     <vehicle id="F07_9" depart="135.00" departLane="best">
         <routeDistribution last="0">
             <route cost="37.11" probability="1.00000000" edges="L0309 L0915 L1521"/>
-        </routeDistribution>
-    </vehicle>
-    <vehicle id="F08_9" depart="135.00" departLane="best">
-        <routeDistribution last="0">
-            <route cost="37.11" probability="1.00000000" edges="L2216 L1610 L1004"/>
         </routeDistribution>
     </vehicle>
     <vehicle id="F09_9" depart="135.00" departLane="best">
