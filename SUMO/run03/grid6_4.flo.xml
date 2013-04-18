@@ -10,7 +10,7 @@
 		<flow id="F02" from="L0102" to="L0506" vtype="CarA" number="15" departLane="best"/>
 		<flow id="F03" from="L1211" to="L0807" vtype="CarA" number="15" departLane="best"/>
 		<flow id="F04" from="L1913" to="L1206" vtype="CarA" number="25" departLane="best"/>
-		<flow id="F045" from="L1913" to="L1824" vtype="CarB" number="25" departLane="best"/>
+		<flow id="F045" from="L1913" to="L1723" vtype="CarB" number="25" departLane="best"/>
 		<flow id="F05" from="L2423" to="L2019" vtype="CarA" number="20" departLane="best"/>
 		<flow id="F06" from="L0208" to="L1420" vtype="CarA" number="20" departLane="best"/>
 		<flow id="F07" from="L0309" to="L1521" vtype="CarA" number="10" departLane="best"/>
