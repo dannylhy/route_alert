@@ -1,11 +1,16 @@
 <flows>
+	<vType id="Amb" accel="0.5" decel="3.0" sigma="0.5" length="5" maxspeed="40"/>
+	<vType id="CarA" accel="0.8" decel="4.5" sigma="0.5" length="5" maxspeed="60"/>
+	<vType id="CarB" accel="1.1" decel="5.5" sigma="0.7" length="5" maxspeed="70"/>
+
 	<flow id="rAmb" from="L1913" to="L1206" vtype="Amb" color="0,1,0" begin="25" end="26" number="1" />
 	<interval begin="0" end="150">
 		<flow id="F00" from="L1913" to="L0701" vtype="CarA" number="50" departLane="best"/>
 		<flow id="F01" from="L0107" to="L1319" vtype="CarA" number="50" departLane="best"/>
 		<flow id="F02" from="L0102" to="L0506" vtype="CarA" number="15" departLane="best"/>
 		<flow id="F03" from="L1211" to="L0807" vtype="CarA" number="15" departLane="best"/>
-		<flow id="F04" from="L1913" to="L1206" vtype="CarA" number="30" departLane="best"/>
+		<flow id="F04" from="L1913" to="L1206" vtype="CarA" number="15" departLane="best"/>
+		<flow id="F045" from="L1913" to="L1206" vtype="CarB" number="15" departLane="best"/>
 		<flow id="F05" from="L2423" to="L2019" vtype="CarA" number="20" departLane="best"/>
 		<flow id="F06" from="L0208" to="L1420" vtype="CarA" number="20" departLane="best"/>
 		<flow id="F07" from="L0309" to="L1521" vtype="CarA" number="10" departLane="best"/>

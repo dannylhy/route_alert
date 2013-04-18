@@ -1,3 +1,4 @@
-$ns_ at 28.0 "$g(21) start"	;# SUMO-ID: rAmb_0
-$ns_ at 108.0 "$g(21) stop"	;# SUMO-ID: rAmb_0
-		<flow id="F04" from="L1913" to="L1206" vtype="CarA" number="30" departLane="best"/>
+$ns_ at 25.0 "$g(250) start"	;# SUMO-ID: rAmb_0
+$ns_ at 106.0 "$g(250) stop"	;# SUMO-ID: rAmb_0
+		<flow id="F04" from="L1913" to="L1206" vtype="CarA" number="15" departLane="best"/>
+		<flow id="F045" from="L1913" to="L1206" vtype="CarB" number="15" departLane="best"/>
