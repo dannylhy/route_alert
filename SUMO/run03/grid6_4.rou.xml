@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- generated on Wed Apr 17 20:17:19 2013 by SUMO duarouter Version 0.16.0
+<!-- generated on Wed Apr 17 20:41:23 2013 by SUMO duarouter Version 0.16.0
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/duarouterConfiguration.xsd">
@@ -58,7 +58,7 @@
         <route edges="L0511 L1117 L1723"/>
     </vehicle>
     <vehicle id="F10_0" depart="0.00" departLane="best">
-        <route edges="L0612 L1218 L1824"/>
+        <route edges="L0612 L1218"/>
     </vehicle>
     <vehicle id="F00_1" depart="3.00" departLane="best">
         <route edges="L1913 L1307 L0701"/>
@@ -130,7 +130,7 @@
         <route edges="L0511 L1117 L1723"/>
     </vehicle>
     <vehicle id="F10_1" depart="15.00" departLane="best">
-        <route edges="L0612 L1218 L1824"/>
+        <route edges="L0612 L1218"/>
     </vehicle>
     <vehicle id="F00_6" depart="18.00" departLane="best">
         <route edges="L1913 L1307 L0701"/>
@@ -211,7 +211,7 @@
         <route edges="L0511 L1117 L1723"/>
     </vehicle>
     <vehicle id="F10_2" depart="30.00" departLane="best">
-        <route edges="L0612 L1218 L1824"/>
+        <route edges="L0612 L1218"/>
     </vehicle>
     <vehicle id="F00_11" depart="33.00" departLane="best">
         <route edges="L1913 L1307 L0701"/>
@@ -283,7 +283,7 @@
         <route edges="L0511 L1117 L1723"/>
     </vehicle>
     <vehicle id="F10_3" depart="45.00" departLane="best">
-        <route edges="L0612 L1218 L1824"/>
+        <route edges="L0612 L1218"/>
     </vehicle>
     <vehicle id="F00_16" depart="48.00" departLane="best">
         <route edges="L1913 L1307 L0701"/>
@@ -361,7 +361,7 @@
         <route edges="L0511 L1117 L1723"/>
     </vehicle>
     <vehicle id="F10_4" depart="60.00" departLane="best">
-        <route edges="L0612 L1218 L1824"/>
+        <route edges="L0612 L1218"/>
     </vehicle>
     <vehicle id="F00_21" depart="63.00" departLane="best">
         <route edges="L1913 L1307 L0701"/>
@@ -433,7 +433,7 @@
         <route edges="L0511 L1117 L1723"/>
     </vehicle>
     <vehicle id="F10_5" depart="75.00" departLane="best">
-        <route edges="L0612 L1218 L1824"/>
+        <route edges="L0612 L1218"/>
     </vehicle>
     <vehicle id="F00_26" depart="78.00" departLane="best">
         <route edges="L1913 L1307 L0701"/>
@@ -511,7 +511,7 @@
         <route edges="L0511 L1117 L1723"/>
     </vehicle>
     <vehicle id="F10_6" depart="90.00" departLane="best">
-        <route edges="L0612 L1218 L1824"/>
+        <route edges="L0612 L1218"/>
     </vehicle>
     <vehicle id="F00_31" depart="93.00" departLane="best">
         <route edges="L1913 L1307 L0701"/>
@@ -583,7 +583,7 @@
         <route edges="L0511 L1117 L1723"/>
     </vehicle>
     <vehicle id="F10_7" depart="105.00" departLane="best">
-        <route edges="L0612 L1218 L1824"/>
+        <route edges="L0612 L1218"/>
     </vehicle>
     <vehicle id="F00_36" depart="108.00" departLane="best">
         <route edges="L1913 L1307 L0701"/>
@@ -661,7 +661,7 @@
         <route edges="L0511 L1117 L1723"/>
     </vehicle>
     <vehicle id="F10_8" depart="120.00" departLane="best">
-        <route edges="L0612 L1218 L1824"/>
+        <route edges="L0612 L1218"/>
     </vehicle>
     <vehicle id="F00_41" depart="123.00" departLane="best">
         <route edges="L1913 L1307 L0701"/>
@@ -733,7 +733,7 @@
         <route edges="L0511 L1117 L1723"/>
     </vehicle>
     <vehicle id="F10_9" depart="135.00" departLane="best">
-        <route edges="L0612 L1218 L1824"/>
+        <route edges="L0612 L1218"/>
     </vehicle>
     <vehicle id="F00_46" depart="138.00" departLane="best">
         <route edges="L1913 L1307 L0701"/>
