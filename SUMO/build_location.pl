@@ -123,7 +123,7 @@ print CC_OUT "string GetRoad(uint32_t in_id) {\n";
 
 print CC_OUT "Time now_time = ns3::Simulator::Now();\n";
 print CC_OUT "double in_time = (double) (((int) ((now_time.GetMilliSeconds() / 100)+0.5)) / 10.0f);\n";
-print CC_OUT "if (in_id == 221)\n  return \"L1206\";\n";
+print CC_OUT "if (in_id == 251)\n  return \"L1206\";\n";
 
 foreach my $time (sort { $a <=> $b } keys %table) {
     my $vehicles = $table{$time};
