@@ -547,8 +547,9 @@ namespace ns3{
 			}else{
 				m_currentRoad = tmp;
 			}
- 
-			SendAlertPacket ();			
+
+			Ipv4Address dst = m_iface.GetBroadcast ();
+			SendPkt (dst, MSG_RREQ); 
 		}
 
 		return 0;
