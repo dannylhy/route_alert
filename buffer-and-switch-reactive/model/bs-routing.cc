@@ -503,8 +503,6 @@ namespace ns3{
 	
 		if (tHeader.GetType () == MSG_HELLO)
 		{
-			//Hello Packets are boradcast, do not need route->SetGateway(...)
-			//NS_LOG_WARN ("Output: route a hello pkt");
 			Ptr<Ipv4Route> route = Create<Ipv4Route> ();
   			route->SetSource (m_address);
   			route->SetDestination (header.GetDestination ());
@@ -516,20 +514,22 @@ namespace ns3{
 			
 		}else if (tHeader.GetType () == MSG_RREQ)
 		{
-			//NS_LOG_WARN ("Output: route a rreq pkt");
+			Ptr<Ipv4Route> route = Create<Ipv4Route> ();
+  			route->SetGateway (header.GetDestination ());
+  			route->SetSource (m_address);
+  			route->SetDestination (header.GetDestination ());
+  			route->SetOutputDevice (m_ipv4->GetNetDevice (m_ifaceId));
 
-			// To be added;
+  			sockerr = Socket::ERROR_NOTERROR;
+
+  			return route;
 	
 		}else if (tHeader.GetType () == MSG_ALERT)
 		{
-			//NS_LOG_WARN ("RouteOutput: route an alert pkt");
 			Ptr<Ipv4Route> route = Create<Ipv4Route> ();
   			route->SetGateway (header.GetDestination ());
-			//NS_LOG_WARN ("RouteOutput: set next hop = " << header.GetDestination ());
   			route->SetSource (m_address);
-			//NS_LOG_WARN ("RouteOutput: set source = " << m_address);
   			route->SetDestination (header.GetDestination ());
-			//NS_LOG_WARN ("RouteOutput: set destination = " << header.GetDestination ());
   			route->SetOutputDevice (m_ipv4->GetNetDevice (m_ifaceId));
 
   			sockerr = Socket::ERROR_NOTERROR;
@@ -550,6 +550,7 @@ namespace ns3{
 
 			Ipv4Address dst = m_iface.GetBroadcast ();
 			SendPkt (dst, MSG_RREQ); 
+			m_alertSent = -1; //activate ambulance's periodically broadcasting of route req packet
 		}
 
 		return 0;
