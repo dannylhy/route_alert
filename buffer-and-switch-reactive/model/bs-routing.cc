@@ -258,7 +258,7 @@ namespace ns3{
 				packet->RemoveHeader (bHeader);
 				if ((ns3::Simulator::Now().GetSeconds() - bHeader.GetTime ()) > EXPIRE_HELLO_PKT)
 				{
-					NS_LOG_WARN ("************************************fuck************************");
+					NS_LOG_WARN ("************************************delay more than 100 sec************************");
 					return;
 				}
 				if (!src.IsEqual (m_address))
