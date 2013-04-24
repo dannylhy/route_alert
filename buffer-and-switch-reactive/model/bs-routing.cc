@@ -82,6 +82,7 @@ namespace ns3{
 		m_velocityx = 0;
 		m_velocityy = 0;
 		m_last_alert = 0;
+		//NS_LOG_WARN (this << " address of m_rtable" << &m_rtable);//m_rtable = new BufferAndSwitchRoutingTable();
 	}
 		
 	BufferAndSwitchRouting::~BufferAndSwitchRouting ()
@@ -92,7 +93,7 @@ namespace ns3{
 	void BufferAndSwitchRouting::SetRtable (Ptr<BufferAndSwitchRoutingTable> ptr)
 	{
 		//NS_LOG_WARN (ptr);
-		m_rtable = ptr;	
+		//m_rtable = ptr;	
 	}
 
 	
@@ -206,7 +207,7 @@ namespace ns3{
 		}
 
 		NS_LOG_WARN ("LookupRoute: currentRoad = " << m_currentRoad);	
-		Ipv4Address dst = m_rtable->LookupRoute (m_currentRoad, (uint64_t)posx, (uint64_t)posy, GetNodeId (), GetAngle (m_velocityx, m_velocityy));
+		Ipv4Address dst = m_rtable.LookupRoute (m_currentRoad, (uint64_t)posx, (uint64_t)posy, GetNodeId (), GetAngle (m_velocityx, m_velocityy));
 		if (!dst.IsEqual (emptyIP))
 		{
 			NS_LOG_WARN (m_address << " is on " << m_currentRoad << 
@@ -223,7 +224,7 @@ namespace ns3{
 		} 
 		else
 		{
-			Ipv4Address dst = m_rtable->LookupRoute (nextRoad, (uint64_t)posx, (uint64_t)posy, GetNodeId (), -1);
+			Ipv4Address dst = m_rtable.LookupRoute (nextRoad, (uint64_t)posx, (uint64_t)posy, GetNodeId (), -1);
 			if (dst.IsEqual (emptyIP))
 			{
 				NS_LOG_WARN (m_address << " hold the alert pkt on road " << m_currentRoad << 
@@ -282,7 +283,7 @@ namespace ns3{
                                                              " route entry add src: " << src << 
                                                              " CurrentRoad " << bHeader.GetCurrentRoad());
 					}
-					m_rtable->UpdateRoute (src, bHeader.GetPosx (), bHeader.GetPosy (), bHeader.GetCurrentRoad (), GetNodeId ());
+					m_rtable.UpdateRoute (src, bHeader.GetPosx (), bHeader.GetPosy (), bHeader.GetCurrentRoad (), GetNodeId ());
 				}
 				//try to forward the alter packet everytime when receiving a hello packet
 				SendAlertPacket ();
@@ -290,8 +291,11 @@ namespace ns3{
 			}
 			case MSG_RREQ:
 			{
-				NS_LOG_WARN ("receive a rreq pkt");
-				
+				if (m_reqRspTimer.IsRunning())
+				{
+					//NS_LOG_WARN(m_address << " is already scheduled to send a HELLO. Skipping");
+					return;
+				}
 				//In order to avoid confict, delay sending hello pkt for usec usecs microsecond.
 				
 				// Danny: Don't do this. Set a timed delay like what I did for hellos in the proactive version
@@ -322,7 +326,7 @@ namespace ns3{
 				NS_LOG_WARN (m_address <<" receive an alert pkt on road " << m_currentRoad);
 				Ipv4Address dst = m_iface.GetBroadcast ();
 				//Clear the routing table when receiving a new alert packet
-				m_rtable->ClearTable ();	
+				m_rtable.ClearTable ();	
 				SendPkt (dst, MSG_RREQ);
 				
 				break;
@@ -372,7 +376,6 @@ namespace ns3{
 			}	
 			case MSG_HELLO:
 			{
-				NS_LOG_WARN("---------------1");
 				posx = MM->GetPosition ().x;
 				posy = MM->GetPosition ().y;
 				std::string tmp = GetRoad (GetNodeId ());
@@ -386,7 +389,6 @@ namespace ns3{
 					m_currentRoad = tmp;
 				}
 
-				NS_LOG_WARN("---------------2");
 				/*if (GetNodeId() == 251)
 				{
 					NS_LOG_WARN (m_address << " sends hello pkt, current road = " << m_currentRoad << " time = " << ns3::Simulator::Now ().GetSeconds ());
@@ -394,8 +396,6 @@ namespace ns3{
 				for (std::map< Ptr<Socket>, Ipv4InterfaceAddress >::const_iterator j = m_socketAddresses.begin ();
 		     		j != m_socketAddresses.end (); j++)
 				{
-					NS_LOG_WARN("---------------3 ");
-					
 					Ptr<Socket> socket = j->first;
 					Ipv4InterfaceAddress iface = j->second;
 						
@@ -414,12 +414,9 @@ namespace ns3{
 					packet->AddHeader (tHeader);
 				
 	
-					m_rtable->UpdateMyCurrentPos (bHeader.GetPosx (), bHeader.GetPosy ());	
+					m_rtable.UpdateMyCurrentPos (bHeader.GetPosx (), bHeader.GetPosy ());	
 
-					NS_LOG_WARN("---------------4 ");
 					socket->SendTo (packet, 0, InetSocketAddress (dst, BS_PORT));	
-					NS_LOG_WARN("---------------5 ");
-					
 				}
 
 				break;
@@ -532,6 +529,7 @@ namespace ns3{
 		if (tHeader.GetType () == MSG_HELLO)
 		{
 			Ptr<Ipv4Route> route = Create<Ipv4Route> ();
+			route->SetGateway (header.GetDestination ());
   			route->SetSource (m_address);
   			route->SetDestination (header.GetDestination ());
   			route->SetOutputDevice (m_ipv4->GetNetDevice (m_ifaceId));

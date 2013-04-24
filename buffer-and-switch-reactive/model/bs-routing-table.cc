@@ -68,6 +68,32 @@ namespace ns3{
 	{
 		int find = 0;
 		double nowSeconds = ns3::Simulator::Now().GetSeconds (); 
+		//NS_LOG_WARN("size of routing table " << this << " ooooooooooooooo " << m_bsTable.size());	
+		
+		std::vector<BSRoutingTableEntry>::iterator iter = m_bsTable.begin ();
+		while (iter != m_bsTable.end ())
+		{
+			if ( nowSeconds - iter->timeStamp.GetSeconds () > m_entryExpireTime )
+			{
+				//NS_LOG_WARN("erase---------------address of it->currentRoad = " << this << "    "<<&(iter->currentRoad));
+				iter = m_bsTable.erase (iter);
+				//NS_LOG_WARN ("delete legancy entry");
+			}else{
+				iter++;
+			}
+		}
+		/*for (std::vector<BSRoutingTableEntry>::iterator it = m_bsTable.begin (); it != m_bsTable.end (); it++)
+		
+		{
+			
+			if ( nowSeconds - it->timeStamp.GetSeconds () > m_entryExpireTime )
+			{
+				NS_LOG_WARN("erase---------------address of it->currentRoad = " << this << "    "<<&(it->currentRoad));
+				m_bsTable.erase (it);
+				//NS_LOG_WARN ("delete legancy entry");
+			}
+		}*/
+
 		for (std::vector<BSRoutingTableEntry>::iterator it = m_bsTable.begin (); it != m_bsTable.end (); it++)
 		{
 			//if find, update routing table
@@ -75,7 +101,8 @@ namespace ns3{
 			{
 				it->posx = posx;
 				it->posy = posy;
-				it->currentRoad = currentRoad;
+				//it->currentRoad = currentRoad;
+				it->currentRoad = std::string(currentRoad);
 				it->timeStamp = ns3::Simulator::Now ();
 				it->id = id;
 				/*if (id == 153) 
@@ -83,13 +110,7 @@ namespace ns3{
 					NS_LOG_WARN ("update existing entry, ip = " << addr << " currentRoad = " << currentRoad << " id = "<< id <<" time = " << ns3::Simulator::Now().GetSeconds ());
 				}*/
 				find = 1;
-			}
-			//delete legancy entry
-			
-			if ( nowSeconds - it->timeStamp.GetSeconds () > m_entryExpireTime )
-			{
-				m_bsTable.erase (it);
-				//NS_LOG_WARN ("delete legancy entry");
+				break;
 			}
 		}
 
@@ -100,7 +121,9 @@ namespace ns3{
 			bsrEntry.addr = addr;
 			bsrEntry.posx = posx;
 			bsrEntry.posy = posy;
-			bsrEntry.currentRoad = currentRoad;
+			//bsrEntry.currentRoad = currentRoad;
+			bsrEntry.currentRoad = std::string(currentRoad);
+			//NS_LOG_WARN("insert---------------address of bsrEntry->currentRoad = " << &(bsrEntry.currentRoad));
 			bsrEntry.timeStamp = ns3::Simulator::Now();
 			bsrEntry.id = id;
 

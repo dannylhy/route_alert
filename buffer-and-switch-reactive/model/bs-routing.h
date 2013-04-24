@@ -96,7 +96,8 @@ namespace ns3{
 				return currentRoad.substr (3, 2);
 			}
 		private:
-			Ptr<BufferAndSwitchRoutingTable> m_rtable;
+			//Ptr<BufferAndSwitchRoutingTable> m_rtable;
+			BufferAndSwitchRoutingTable m_rtable;
 			Ipv4Address m_address;
 			Ptr<Ipv4> m_ipv4;
 			uint32_t m_ifaceId;
