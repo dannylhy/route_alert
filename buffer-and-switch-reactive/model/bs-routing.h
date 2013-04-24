@@ -55,6 +55,7 @@ namespace ns3{
 			
 			void SetDownTarget (IpL4Protocol::DownTargetCallback cb);
 			void HelloTimerExpire (void);
+			void ReqTimerExpire (void);
 			IpL4Protocol::DownTargetCallback GetDownTarget (void) const;
 		private:
 			Ptr<Socket> FindSocketWithInterfaceAddress (Ipv4InterfaceAddress addr) const;
@@ -102,6 +103,7 @@ namespace ns3{
 			std::map< Ptr<Socket>, Ipv4InterfaceAddress> m_socketAddresses;
 			Ipv4InterfaceAddress m_iface;
 			Timer m_helloIntervalTimer;
+			Timer m_reqRspTimer;
 			Time m_helloInterval;
 			IpL4Protocol::DownTargetCallback m_downTarget;
 			int m_alertSent;
@@ -109,6 +111,7 @@ namespace ns3{
 			uint32_t m_velocityx;
 			uint32_t m_velocityy;
 			uint32_t m_last_alert;
+			Ipv4Address m_helloSource;
 	};
  }
 }

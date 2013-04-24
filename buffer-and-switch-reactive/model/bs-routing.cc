@@ -38,6 +38,7 @@
 std::string ambPath = "L191314151617181206"; //Should get from map info;
 ns3::Ipv4Address destination = ns3::Ipv4Address ("10.1.1.252");
 ns3::Ipv4Address ambIP = ns3::Ipv4Address ("10.1.1.251");
+ns3::Ipv4Address emptyIP = ns3::Ipv4Address ("0.0.0.0");
 uint32_t ambID = 250;
 uint32_t pkt_send = 0;
 uint32_t pkt_drop = 0;
@@ -74,7 +75,9 @@ namespace ns3{
 	{
 		//NS_LOG_WARN_NOARGS ();
 		m_helloIntervalTimer = Timer::CANCEL_ON_DESTROY;
+		m_reqRspTimer = Timer::CANCEL_ON_DESTROY;
 		m_helloInterval = Seconds (2);
+		m_helloSource = emptyIP;
 		m_alertSent = 0;
 		m_velocityx = 0;
 		m_velocityy = 0;
@@ -108,6 +111,15 @@ namespace ns3{
 		}
 		m_helloIntervalTimer.Cancel ();
 		m_helloIntervalTimer.Schedule (m_helloInterval);
+	}
+
+	void BufferAndSwitchRouting::ReqTimerExpire (void)
+	{	
+		if (!m_helloSource.IsEqual(emptyIP))
+		{
+			SendPkt (m_helloSource, MSG_HELLO);
+		}
+		m_reqRspTimer.Cancel ();
 	}
 
 	Ptr<Socket> BufferAndSwitchRouting::FindSocketWithInterfaceAddress (Ipv4InterfaceAddress addr) const
@@ -195,7 +207,7 @@ namespace ns3{
 
 		NS_LOG_WARN ("LookupRoute: currentRoad = " << m_currentRoad);	
 		Ipv4Address dst = m_rtable->LookupRoute (m_currentRoad, (uint64_t)posx, (uint64_t)posy, GetNodeId (), GetAngle (m_velocityx, m_velocityy));
-		if (!dst.IsEqual (Ipv4Address ("0.0.0.0")))
+		if (!dst.IsEqual (emptyIP))
 		{
 			NS_LOG_WARN (m_address << " is on " << m_currentRoad << 
 				     " forward alert pkt on current road dst ip = " << dst << 
@@ -212,7 +224,7 @@ namespace ns3{
 		else
 		{
 			Ipv4Address dst = m_rtable->LookupRoute (nextRoad, (uint64_t)posx, (uint64_t)posy, GetNodeId (), -1);
-			if (dst.IsEqual (Ipv4Address ("0.0.0.0")))
+			if (dst.IsEqual (emptyIP))
 			{
 				NS_LOG_WARN (m_address << " hold the alert pkt on road " << m_currentRoad << 
                                              " time = " << ns3::Simulator::Now().GetSeconds ());
@@ -281,10 +293,18 @@ namespace ns3{
 				NS_LOG_WARN ("receive a rreq pkt");
 				
 				//In order to avoid confict, delay sending hello pkt for usec usecs microsecond.
-				unsigned int usecs = (rand()/RAND_MAX)*1000;
-				usleep (usecs);
-				SendPkt (src, MSG_HELLO);
+				
+				// Danny: Don't do this. Set a timed delay like what I did for hellos in the proactive version
+				m_helloSource = src;
 	
+				double minRand = 1;
+				double maxRand = 999;
+				Ptr<UniformRandomVariable> randStartTime= CreateObject<UniformRandomVariable>();
+				randStartTime->SetAttribute("Min", DoubleValue(minRand));
+				randStartTime->SetAttribute("Max", DoubleValue(maxRand));
+				Time start_time = Seconds(randStartTime->GetValue()/1000.0);
+
+				m_reqRspTimer.Schedule (start_time);
 				break;
 			}
 			case MSG_ALERT:
@@ -352,6 +372,7 @@ namespace ns3{
 			}	
 			case MSG_HELLO:
 			{
+				NS_LOG_WARN("---------------1");
 				posx = MM->GetPosition ().x;
 				posy = MM->GetPosition ().y;
 				std::string tmp = GetRoad (GetNodeId ());
@@ -365,6 +386,7 @@ namespace ns3{
 					m_currentRoad = tmp;
 				}
 
+				NS_LOG_WARN("---------------2");
 				/*if (GetNodeId() == 251)
 				{
 					NS_LOG_WARN (m_address << " sends hello pkt, current road = " << m_currentRoad << " time = " << ns3::Simulator::Now ().GetSeconds ());
@@ -372,6 +394,8 @@ namespace ns3{
 				for (std::map< Ptr<Socket>, Ipv4InterfaceAddress >::const_iterator j = m_socketAddresses.begin ();
 		     		j != m_socketAddresses.end (); j++)
 				{
+					NS_LOG_WARN("---------------3 ");
+					
 					Ptr<Socket> socket = j->first;
 					Ipv4InterfaceAddress iface = j->second;
 						
@@ -391,7 +415,11 @@ namespace ns3{
 				
 	
 					m_rtable->UpdateMyCurrentPos (bHeader.GetPosx (), bHeader.GetPosy ());	
+
+					NS_LOG_WARN("---------------4 ");
 					socket->SendTo (packet, 0, InetSocketAddress (dst, BS_PORT));	
+					NS_LOG_WARN("---------------5 ");
+					
 				}
 
 				break;
@@ -424,7 +452,7 @@ namespace ns3{
                 NS_LOG_WARN (ipv4);
 		m_ipv4 = ipv4;
 		m_helloIntervalTimer.SetFunction (&BufferAndSwitchRouting::HelloTimerExpire, this);
-
+		m_reqRspTimer.SetFunction (&BufferAndSwitchRouting::ReqTimerExpire, this);
 		double minRand = 1;
 		double maxRand = 999;
 		Ptr<UniformRandomVariable> randStartTime= CreateObject<UniformRandomVariable>();
