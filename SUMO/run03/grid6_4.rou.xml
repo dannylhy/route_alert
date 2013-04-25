@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- generated on Wed Apr 17 22:21:00 2013 by SUMO duarouter Version 0.16.0
+<!-- generated on Wed Apr 24 23:33:55 2013 by SUMO duarouter Version 0.16.0
 <?xml version="1.0" encoding="UTF-8"?>
 
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.sf.net/xsd/duarouterConfiguration.xsd">
@@ -168,9 +168,6 @@
     <vehicle id="F00_8" depart="24.00" departLane="best">
         <route edges="L1913 L1307 L0701"/>
     </vehicle>
-    <vehicle id="rAmb_0" depart="25.00" color="0.00,1.00,0.00">
-        <route color="0.00,1.00,0.00" edges="L1913 L1314 L1415 L1516 L1617 L1718 L1812 L1206"/>
-    </vehicle>
     <vehicle id="F01_7" depart="26.00" departLane="best">
         <route edges="L0107 L0713 L1319"/>
     </vehicle>
@@ -305,6 +302,9 @@
     </vehicle>
     <vehicle id="F03_5" depart="50.00" departLane="best">
         <route edges="L1211 L1110 L1009 L0908 L0807"/>
+    </vehicle>
+    <vehicle id="rAmb_0" depart="50.00" color="0.00,1.00,0.00">
+        <route color="0.00,1.00,0.00" edges="L1913 L1314 L1415 L1516 L1617 L1718 L1812 L1206"/>
     </vehicle>
     <vehicle id="F00_17" depart="51.00" departLane="best">
         <route edges="L1913 L1307 L0701"/>
